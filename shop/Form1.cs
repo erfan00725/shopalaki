@@ -98,15 +98,9 @@ namespace shop
         }
 
         private OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\Shopdb.accdb;Persist Security Info=False");
-        private OleDbCommand myCommand1 = new OleDbCommand();
-        private OleDbDataAdapter adapter1 = new OleDbDataAdapter();
-        private DataSet dataSet1 = new DataSet();
-        private OleDbCommand myCommand2 = new OleDbCommand();
-        private OleDbDataAdapter adapter2 = new OleDbDataAdapter();
-        private DataSet dataSet2 = new DataSet();
-        private OleDbCommand myCommand3 = new OleDbCommand();
-        private OleDbDataAdapter adapter3 = new OleDbDataAdapter();
-        private DataSet dataSet3 = new DataSet();
+        private OleDbCommand myCommand1 = new OleDbCommand(), myCommand2 = new OleDbCommand(), myCommand3 = new OleDbCommand();
+        private OleDbDataAdapter adapter1 = new OleDbDataAdapter(), adapter2 = new OleDbDataAdapter(), adapter3 = new OleDbDataAdapter();
+        private DataSet dataSet1 = new DataSet(), dataSet2 = new DataSet(), dataSet3 = new DataSet();
         internal void AddMadadju(string FirstName, string LastName, string Address, string PhoneNumber)
         {
             connection.Open();
