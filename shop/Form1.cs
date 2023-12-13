@@ -117,11 +117,13 @@ namespace shop
             connection.Open();
             string query = $"select * from Madadjuyan;";
 
+            dataSet1.Clear();
             myCommand1.CommandText = query;
             myCommand1.Connection = connection;
             adapter1.SelectCommand = myCommand1;
             adapter1.Fill(dataSet1, "Madadjuyan");
             makersDGV.DataSource = dataSet1.Tables[0].DefaultView;
+            makersDGV.Refresh();
 
             connection.Close();
         }
@@ -141,11 +143,13 @@ namespace shop
             connection.Open();
             string query = $"select * from Products;";
 
+            dataSet2.Clear();
             myCommand2.CommandText = query;
             myCommand2.Connection = connection;
             adapter2.SelectCommand = myCommand2;
             adapter2.Fill(dataSet2, "Products");
             productsDGV.DataSource = dataSet2.Tables[0].DefaultView;
+            productsDGV.Refresh();
 
             connection.Close();
         }
@@ -165,11 +169,13 @@ namespace shop
             connection.Open();
             string query = $"select * from Orders;";
 
+            dataSet3.Clear();
             myCommand3.CommandText = query;
             myCommand3.Connection = connection;
             adapter3.SelectCommand = myCommand3;
             adapter3.Fill(dataSet3, "Orders");
             ordersDGV.DataSource = dataSet3.Tables[0].DefaultView;
+            ordersDGV.Refresh();
 
             connection.Close();
         }
@@ -184,7 +190,6 @@ namespace shop
             string productName = addProductNameBox.Text;
             AddProduct(productName);
             addProductNameBox.Text = "";
-            productsDGV.Columns.Clear();
             ShowProducts();
         }
 
