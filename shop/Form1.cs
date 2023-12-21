@@ -2,6 +2,7 @@ using shop;
 using System.Data;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using System.Diagnostics;
 
 
 namespace shop
@@ -26,7 +27,7 @@ namespace shop
         private void Form1_Load(object sender, EventArgs e)
         {
             mainTabs.Size = this.Size;
-            ShowMadadju();
+            ShowMakers();
             ShowOrders();
             ShowProducts();
         }
@@ -101,10 +102,10 @@ namespace shop
         private OleDbCommand myCommand1 = new OleDbCommand(), myCommand2 = new OleDbCommand(), myCommand3 = new OleDbCommand();
         private OleDbDataAdapter adapter1 = new OleDbDataAdapter(), adapter2 = new OleDbDataAdapter(), adapter3 = new OleDbDataAdapter();
         private DataSet dataSet1 = new DataSet(), dataSet2 = new DataSet(), dataSet3 = new DataSet();
-        internal void AddMadadju(string FirstName, string LastName, string Address, string PhoneNumber)
+        internal void AddMaker(string FirstName, string LastName, string PhoneNumber, string MakerAddress, string NationalCode)
         {
             connection.Open();
-            string query = $"insert into Madadjuyan (FirstName, LastName, Address, PhoneNumber) values(\'{FirstName}\',\'{LastName}\',\'{Address}\',\'{PhoneNumber}\');";
+            string query = $"insert into Makers (FirstName, LastName, PhoneNumber, MakerAddress, NationalCode) values(\'{FirstName}\',\'{LastName}\',\'{PhoneNumber}\','{MakerAddress}','{NationalCode}');";
 
             myCommand1.CommandText = query;
             myCommand1.Connection = connection;
@@ -112,25 +113,25 @@ namespace shop
 
             connection.Close();
         }
-        internal void ShowMadadju()
+        internal void ShowMakers()
         {
             connection.Open();
-            string query = $"select * from Madadjuyan;";
+            string query = $"select * from Makers;";
 
             dataSet1.Clear();
             myCommand1.CommandText = query;
             myCommand1.Connection = connection;
             adapter1.SelectCommand = myCommand1;
-            adapter1.Fill(dataSet1, "Madadjuyan");
+            adapter1.Fill(dataSet1, "Makers");
             makersDGV.DataSource = dataSet1.Tables[0].DefaultView;
             makersDGV.Refresh();
 
             connection.Close();
         }
-        internal void AddProduct(string ProductName)
+        internal void AddProduct(string ProductName, int Maker_ID, int Price, int Stuck, string ProductType)
         {
             connection.Open();
-            string query = $"insert into Products (ProductName) values(\'{ProductName}\');";
+            string query = $"insert into Products (ProductName ,Maker_ID, Price, Stuck, ProductType) values('{ProductName}','{Maker_ID}','{Price}','{Stuck}','{ProductType}');";
 
             myCommand2.CommandText = query;
             myCommand2.Connection = connection;
@@ -153,10 +154,10 @@ namespace shop
 
             connection.Close();
         }
-        internal void AddOrder(string CustomerFirstName, string CustomerLastName)
+        internal void AddOrder(string Product_IDs, string CustomerFirstName, string CustomerLastName, string CustomerAddress, string CustomerPhone)
         {
             connection.Open();
-            string query = $"insert into Orders (CustomerFirstName, CustomerLastName) values(\'{CustomerFirstName}\',\'{CustomerLastName}\');";
+            string query = $"insert into Orders (Product_IDs, CustomerFirstName, CustomerLastName, CustomerAddress, CustomerPhone) values('{Product_IDs}''{CustomerFirstName}','{CustomerLastName}','{CustomerAddress}','{CustomerPhone}');";
 
             myCommand3.CommandText = query;
             myCommand3.Connection = connection;
