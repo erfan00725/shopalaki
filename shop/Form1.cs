@@ -9,6 +9,12 @@ namespace shop
 {
     public partial class Form1 : Form
     {
+
+
+        private int ProductOrdersListNum = 0;
+        private int ProductOrdersListX = 142;
+        private int ProductOrdersListY = 26;
+
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +36,8 @@ namespace shop
             ShowMakers();
             ShowOrders();
             ShowProducts();
+
+            createAddOrder();
         }
 
         private void tabPage1_Click_1(object sender, EventArgs e)
@@ -189,13 +197,82 @@ namespace shop
         private void addProductBTN_Click(object sender, EventArgs e)
         {
             string productName = addProductNameBox.Text;
-            AddProduct(productName);
+            //AddProduct(productName);
             addProductNameBox.Text = "";
             ShowProducts();
         }
 
         private void productsTabs_Click(object sender, EventArgs e)
         {
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Button b = new Button();
+            b.Size = new Size(100, 50);
+            b.Location = new Point(200, 100);
+            b.Text = "hi";
+            b.BringToFront();
+            tabPage3.Controls.Add(b);
+
+
+            ComboBox cb = new ComboBox();
+            cb.Location = new Point(100, 100);
+            cb.Size = new Size(100, 20);
+            cb.Name = "cb1";
+            //cb.Items.Add("Red");
+            //cb.Items.Add("Green");
+            //cb.Items.Add("Blue");
+            tabPage3.Controls.Add(cb);
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void createAddOrder()
+        {
+            if (ProductOrdersListNum == 12)
+            {
+                return;
+            }
+            else if (ProductOrdersListNum % 4 == 0 && ProductOrdersListNum != 0)
+            {
+                ProductOrdersListY = ProductOrdersListY + 50;
+                ProductOrdersListX = 142;
+            }
+
+
+            ComboBox cb = new ComboBox();
+            cb.Location = new Point(ProductOrdersListX, ProductOrdersListY);
+            cb.Size = new Size(121, 23);
+            cb.Name = "ProductOrdersList" + ProductOrdersListNum++.ToString();
+            //cb.Items.Add("Red");
+            //cb.Items.Add("Green");
+            //cb.Items.Add("Blue");
+            tabPage3.Controls.Add(cb);
+            ProductOrdersListX += 150;
+            addProductsListButton.Location = new Point(ProductOrdersListX + 5, ProductOrdersListY - 10);
+
+            label11.Text = ProductOrdersListNum.ToString();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            createAddOrder();
         }
     }
 }
