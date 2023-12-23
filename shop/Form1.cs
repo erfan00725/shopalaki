@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 
 namespace shop
@@ -19,17 +20,8 @@ namespace shop
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        private void button1_Click(object sender, EventArgs e) { }
+        private void tabPage1_Click(object sender, EventArgs e) { }
         private void Form1_Load(object sender, EventArgs e)
         {
             mainTabs.Size = this.Size;
@@ -39,79 +31,26 @@ namespace shop
 
             createAddOrder();
         }
+        private void tabPage1_Click_1(object sender, EventArgs e) { }
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
+        private void button1_Click_2(object sender, EventArgs e) { }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void tabPage4_Click(object sender, EventArgs e) { }
+        private void tabPage5_Click(object sender, EventArgs e) { }
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
+        private void label1_Click(object sender, EventArgs e) { }
+        private void makersTab_Click(object sender, EventArgs e) { }
 
-        private void tabPage1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-        private class Products
-        {
-            public string name { get; set; }
-            public int price { get; set; }
-            public int ID { get; set; }
-            public int stack { get; set; }
-            public Products(string name, int price, int ID, int stack)
-            {
-                this.name = name;
-                this.price = price;
-                this.ID = ID;
-                this.stack = stack;
-            }
-        }
-        Products[] pro = new Products[] { new Products("mast", 5000, 1, 10), new Products("khiar", 20000, 1, 30), new Products("noon", 2000, 1, 230), new Products("dogh", 12000, 1, 52) };
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            foreach (var item in pro)
-            {
-                MessageBox.Show(item.name);
-            }
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void button1_Click_2(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void tabPage4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void makersTab_Click(object sender, EventArgs e)
-        {
-
-        }
+        private List<string> test = new List<string>();
 
         private OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\Shopdb.accdb;Persist Security Info=False");
         private OleDbCommand myCommand1 = new OleDbCommand(), myCommand2 = new OleDbCommand(), myCommand3 = new OleDbCommand();
         private OleDbDataAdapter adapter1 = new OleDbDataAdapter(), adapter2 = new OleDbDataAdapter(), adapter3 = new OleDbDataAdapter();
         private DataSet dataSet1 = new DataSet(), dataSet2 = new DataSet(), dataSet3 = new DataSet();
+        private List<ComboBox> orderBoxes = new List<ComboBox>();
         internal void AddMaker(string FirstName, string LastName, string PhoneNumber, string MakerAddress, string NationalCode)
         {
+
             connection.Open();
             string query = $"insert into Makers (FirstName, LastName, PhoneNumber, MakerAddress, NationalCode) values(\'{FirstName}\',\'{LastName}\',\'{PhoneNumber}\','{MakerAddress}','{NationalCode}');";
 
@@ -197,7 +136,6 @@ namespace shop
         private void addProductBTN_Click(object sender, EventArgs e)
         {
             string productName = addProductNameBox.Text;
-            //AddProduct(productName);
             addProductNameBox.Text = "";
             ShowProducts();
         }
@@ -205,44 +143,26 @@ namespace shop
         private void productsTabs_Click(object sender, EventArgs e)
         {
         }
-
+        string Orders = "";
         private void button2_Click(object sender, EventArgs e)
         {
-            Button b = new Button();
-            b.Size = new Size(100, 50);
-            b.Location = new Point(200, 100);
-            b.Text = "hi";
-            b.BringToFront();
-            tabPage3.Controls.Add(b);
-
-
             ComboBox cb = new ComboBox();
             cb.Location = new Point(100, 100);
             cb.Size = new Size(100, 20);
             cb.Name = "cb1";
-            //cb.Items.Add("Red");
-            //cb.Items.Add("Green");
-            //cb.Items.Add("Blue");
+            Orders = "";
+            foreach (ComboBox order in orderBoxes)
+            {
+                Orders += order.Text;
+            }
+
+            AddOrder(Orders,);
             tabPage3.Controls.Add(cb);
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox10_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
+        private void label4_Click(object sender, EventArgs e) { }
+        private void label10_Click(object sender, EventArgs e) { }
+        private void textBox10_TextChanged(object sender, EventArgs e) { }
         private void createAddOrder()
         {
             if (ProductOrdersListNum == 12)
@@ -254,25 +174,51 @@ namespace shop
                 ProductOrdersListY = ProductOrdersListY + 50;
                 ProductOrdersListX = 142;
             }
+            connection.Open();
+            string query = $"select * from Products;";
+
+            dataSet2.Clear();
+            myCommand2.CommandText = query;
+            myCommand2.Connection = connection;
+            adapter2.SelectCommand = myCommand2;
+            adapter2.Fill(dataSet2, "Products");
+            connection.Close();
+
+            List<string> cbdata = new List<string>();
+
+            for (int i = 0; i < 100; i++)
+            {
+                try
+                {
+                    cbdata.Add(dataSet2.Tables[0].Rows[i][1].ToString());
+
+                }
+                catch
+                {
+                    break;
+                }
+            }
 
 
             ComboBox cb = new ComboBox();
             cb.Location = new Point(ProductOrdersListX, ProductOrdersListY);
             cb.Size = new Size(121, 23);
             cb.Name = "ProductOrdersList" + ProductOrdersListNum++.ToString();
-            //cb.Items.Add("Red");
-            //cb.Items.Add("Green");
-            //cb.Items.Add("Blue");
+            cb.DataSource = cbdata;
+            orderBoxes.Add(cb);
             tabPage3.Controls.Add(cb);
             ProductOrdersListX += 150;
             addProductsListButton.Location = new Point(ProductOrdersListX + 5, ProductOrdersListY - 10);
 
-            label11.Text = ProductOrdersListNum.ToString();
         }
 
         private void button3_Click_1(object sender, EventArgs e)
         {
             createAddOrder();
+        }
+
+        private void button3_Click_2(object sender, EventArgs e)
+        {
         }
     }
 }
