@@ -78,6 +78,7 @@
             label7 = new Label();
             label8 = new Label();
             button2 = new Button();
+            button3 = new Button();
             productsTabs = new TabControl();
             productsTabs.SuspendLayout();
             tabPage4.SuspendLayout();
@@ -110,6 +111,7 @@
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(button3);
             tabPage4.Controls.Add(Productdelbtn);
             tabPage4.Controls.Add(productsDGV);
             tabPage4.Location = new Point(4, 29);
@@ -602,6 +604,15 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // button3
+            // 
+            button3.Location = new Point(534, 422);
+            button3.Name = "button3";
+            button3.Size = new Size(94, 29);
+            button3.TabIndex = 2;
+            button3.Text = "ثبت تغییرات";
+            button3.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -686,5 +697,6 @@
         private Button Productdelbtn;
         private Button Makerdelbtn;
         private Button Orderdelbtn;
+        private Button button3;
     }
 }

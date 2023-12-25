@@ -11,39 +11,32 @@ namespace shop
     public partial class Form1 : Form
     {
 
-
-        private int ProductOrdersListNum = 0;
-        private int ProductOrdersListX = 163;
-        private int ProductOrdersListY = 34;
-
         public Form1()
         {
             InitializeComponent();
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            mainTabs.Size = this.Size;
-            ShowMakers();
-            ShowOrders();
-            ShowProducts();
-
-            createAddOrder();
-        }
-
-        private List<string> test = new List<string>();
 
         private OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\Shopdb.accdb;Persist Security Info=False");
         private OleDbCommand myCommand1 = new OleDbCommand(), myCommand2 = new OleDbCommand(), myCommand3 = new OleDbCommand();
         private OleDbDataAdapter adapter1 = new OleDbDataAdapter(), adapter2 = new OleDbDataAdapter(), adapter3 = new OleDbDataAdapter();
         private DataSet dataSet1 = new DataSet(), dataSet2 = new DataSet(), dataSet3 = new DataSet();
         private List<ComboBox> orderBoxes = new List<ComboBox>();
-        string last_se, Orders = "";
+        private string last_se, Orders = "";
+        private int ProductOrdersListNum = 0, ProductOrdersListX = 163, ProductOrdersListY = 34;
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            mainTabs.Size = this.Size;
+            ShowMakers();
+            ShowOrders();
+            ShowProducts();
+            createAddOrder();
+        }
         internal void AddMaker(string FirstName, string LastName, string PhoneNumber, string MakerAddress, string NationalCode)
         {
-
             connection.Open();
-            string query = $"insert into Makers (FirstName, LastName, PhoneNumber, MakerAddress, NationalCode) values(\'{FirstName}\',\'{LastName}\',\'{PhoneNumber}\','{MakerAddress}','{NationalCode}');";
 
+            string query = $"insert into Makers (FirstName, LastName, PhoneNumber, MakerAddress, NationalCode) values(\'{FirstName}\',\'{LastName}\',\'{PhoneNumber}\','{MakerAddress}','{NationalCode}');";
             myCommand1.CommandText = query;
             myCommand1.Connection = connection;
             myCommand1.ExecuteNonQuery();
@@ -53,8 +46,8 @@ namespace shop
         internal void ShowMakers()
         {
             connection.Open();
-            string query = $"select * from Makers;";
 
+            string query = $"select * from Makers;";
             dataSet1.Clear();
             myCommand1.CommandText = query;
             myCommand1.Connection = connection;
@@ -67,10 +60,9 @@ namespace shop
         }
         internal void DeleteMaker(int ID)
         {
-
             connection.Open();
-            string query = $"DELETE FROM Makers WHERE Maker_ID = {ID};";
 
+            string query = $"DELETE FROM Makers WHERE Maker_ID = {ID};";
             myCommand1.CommandText = query;
             myCommand1.Connection = connection;
             myCommand1.ExecuteNonQuery();
@@ -80,8 +72,8 @@ namespace shop
         internal void AddProduct(string ProductName, int Maker_ID, int Price, int Stuck, string ProductType)
         {
             connection.Open();
-            string query = $"insert into Products (ProductName ,Maker_ID, Price, Stuck, ProductType) values('{ProductName}','{Maker_ID}','{Price}','{Stuck}','{ProductType}');";
 
+            string query = $"insert into Products (ProductName ,Maker_ID, Price, Stuck, ProductType) values('{ProductName}','{Maker_ID}','{Price}','{Stuck}','{ProductType}');";
             myCommand2.CommandText = query;
             myCommand2.Connection = connection;
             myCommand2.ExecuteNonQuery();
@@ -91,8 +83,8 @@ namespace shop
         internal void ShowProducts()
         {
             connection.Open();
-            string query = $"select * from Products;";
 
+            string query = $"select * from Products;";
             dataSet2.Clear();
             myCommand2.CommandText = query;
             myCommand2.Connection = connection;
@@ -105,10 +97,9 @@ namespace shop
         }
         internal void DeleteProduct(int ID)
         {
-
             connection.Open();
-            string query = $"DELETE FROM Products WHERE Product_ID = {ID};";
 
+            string query = $"DELETE FROM Products WHERE Product_ID = {ID};";
             myCommand2.CommandText = query;
             myCommand2.Connection = connection;
             myCommand2.ExecuteNonQuery();
@@ -118,8 +109,8 @@ namespace shop
         internal void AddOrder(string Product_IDs, string CustomerFirstName, string CustomerLastName, string CustomerAddress, string CustomerPhone)
         {
             connection.Open();
-            string query = $"insert into Orders (Product_IDs, CustomerFirstName, CustomerLastName, CustomerAddress, CustomerPhone) values(\'{Product_IDs}\',\'{CustomerFirstName}\',\'{CustomerLastName}\',\'{CustomerAddress}\',\'{CustomerPhone}');";
 
+            string query = $"insert into Orders (Product_IDs, CustomerFirstName, CustomerLastName, CustomerAddress, CustomerPhone) values(\'{Product_IDs}\',\'{CustomerFirstName}\',\'{CustomerLastName}\',\'{CustomerAddress}\',\'{CustomerPhone}');";
             myCommand3.CommandText = query;
             myCommand3.Connection = connection;
             myCommand3.ExecuteNonQuery();
@@ -129,8 +120,8 @@ namespace shop
         internal void ShowOrders()
         {
             connection.Open();
-            string query = $"select * from Orders;";
 
+            string query = $"select * from Orders;";
             dataSet3.Clear();
             myCommand3.CommandText = query;
             myCommand3.Connection = connection;
@@ -143,10 +134,9 @@ namespace shop
         }
         internal void DeleteOrder(int ID)
         {
-
             connection.Open();
-            string query = $"DELETE FROM Orders WHERE Order_ID = {ID};";
 
+            string query = $"DELETE FROM Orders WHERE Order_ID = {ID};";
             myCommand3.CommandText = query;
             myCommand3.Connection = connection;
             myCommand3.ExecuteNonQuery();
