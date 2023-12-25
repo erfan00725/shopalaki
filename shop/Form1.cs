@@ -13,8 +13,8 @@ namespace shop
 
 
         private int ProductOrdersListNum = 0;
-        private int ProductOrdersListX = 142;
-        private int ProductOrdersListY = 26;
+        private int ProductOrdersListX = 163;
+        private int ProductOrdersListY = 34;
 
         public Form1()
         {
@@ -104,7 +104,7 @@ namespace shop
         internal void AddOrder(string Product_IDs, string CustomerFirstName, string CustomerLastName, string CustomerAddress, string CustomerPhone)
         {
             connection.Open();
-            string query = $"insert into Orders (Product_IDs, CustomerFirstName, CustomerLastName, CustomerAddress, CustomerPhone) values('{Product_IDs}''{CustomerFirstName}','{CustomerLastName}','{CustomerAddress}','{CustomerPhone}');";
+            string query = $"insert into Orders (Product_IDs, CustomerFirstName, CustomerLastName, CustomerAddress, CustomerPhone) values(\'{Product_IDs}\',\'{CustomerFirstName}\',\'{CustomerLastName}\',\'{CustomerAddress}\',\'{CustomerPhone}');";
 
             myCommand3.CommandText = query;
             myCommand3.Connection = connection;
@@ -147,8 +147,8 @@ namespace shop
         private void button2_Click(object sender, EventArgs e)
         {
             ComboBox cb = new ComboBox();
-            cb.Location = new Point(100, 100);
-            cb.Size = new Size(100, 20);
+            cb.Location = new Point(163, 34);
+            cb.Size = new Size(151, 28);
             cb.Name = "cb1";
             Orders = "";
             foreach (ComboBox order in orderBoxes)
@@ -156,8 +156,23 @@ namespace shop
                 Orders += order.Text;
             }
 
-            AddOrder(Orders,);
-            tabPage3.Controls.Add(cb);
+            if (AddBuyerAddressTextBox.Text != "" && AddbuyerFirsTextBox.Text != "" && AddBuyerLastTextBox.Text != "" && AddBuyerNumTextBox.Text != "" )
+            {
+                AddOrder(Orders, AddbuyerFirsTextBox.Text, AddBuyerLastTextBox.Text, AddBuyerAddressTextBox.Text, AddBuyerNumTextBox.Text);
+                AddbuyerFirsTextBox.Text = ""; AddBuyerLastTextBox.Text = ""; AddBuyerAddressTextBox.Text = ""; AddBuyerNumTextBox.Text = "";
+            }
+            for (int i = 0; i < ProductOrdersListNum; i++)
+            {
+            }
+            foreach (var item in orderBoxes)
+            {
+                tabPage3.Controls.Remove(item);
+            }
+            ProductOrdersListNum = 0;
+            ProductOrdersListX = 163;
+            ProductOrdersListY = 34;
+            addProductsListButton.Location = new Point(320, 21);
+        ShowOrders();
         }
 
         private void label4_Click(object sender, EventArgs e) { }
@@ -172,7 +187,7 @@ namespace shop
             else if (ProductOrdersListNum % 4 == 0 && ProductOrdersListNum != 0)
             {
                 ProductOrdersListY = ProductOrdersListY + 50;
-                ProductOrdersListX = 142;
+                ProductOrdersListX = 163;
             }
             connection.Open();
             string query = $"select * from Products;";
@@ -202,12 +217,12 @@ namespace shop
 
             ComboBox cb = new ComboBox();
             cb.Location = new Point(ProductOrdersListX, ProductOrdersListY);
-            cb.Size = new Size(121, 23);
+            cb.Size = new Size(151, 28);
             cb.Name = "ProductOrdersList" + ProductOrdersListNum++.ToString();
             cb.DataSource = cbdata;
             orderBoxes.Add(cb);
             tabPage3.Controls.Add(cb);
-            ProductOrdersListX += 150;
+            ProductOrdersListX += 175;
             addProductsListButton.Location = new Point(ProductOrdersListX + 5, ProductOrdersListY - 10);
 
         }

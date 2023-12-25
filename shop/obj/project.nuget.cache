@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "g9w/FYPvEfFhlMSyaVNZGnpj94ycmt2Wt0DAYinHw62ohdT/wydIOFm9qaTmovInvrt0tCsJlQ9weXiUgnFCfw==",
+  "dgSpecHash": "h5oowRsPtbJaBucrBJiBXgXwloEet+AaL3wAFFIDDxHUUxtMeLwo+fATVeQz3YHthRum4go/4CqOD/4e1w7lZg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mahdi\\source\\repos\\shop2\\shopalaki\\shop\\shop.csproj",
+  "projectFilePath": "D:\\programming\\shopalaki\\shop\\shop.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\mahdi\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
-    "C:\\Users\\mahdi\\.nuget\\packages\\system.data.oledb\\8.0.0\\system.data.oledb.8.0.0.nupkg.sha512",
-    "C:\\Users\\mahdi\\.nuget\\packages\\system.diagnostics.performancecounter\\8.0.0\\system.diagnostics.performancecounter.8.0.0.nupkg.sha512",
-    "C:\\Users\\mahdi\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512"
+    "C:\\Users\\erfan\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
+    "C:\\Users\\erfan\\.nuget\\packages\\system.data.oledb\\8.0.0\\system.data.oledb.8.0.0.nupkg.sha512",
+    "C:\\Users\\erfan\\.nuget\\packages\\system.diagnostics.performancecounter\\8.0.0\\system.diagnostics.performancecounter.8.0.0.nupkg.sha512",
+    "C:\\Users\\erfan\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512"
   ],
   "logs": []
 }
