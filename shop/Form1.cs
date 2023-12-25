@@ -1,4 +1,4 @@
-using shop;
+﻿using shop;
 using System.Data;
 using System.Windows.Forms;
 using System.Data.OleDb;
@@ -20,8 +20,6 @@ namespace shop
         {
             InitializeComponent();
         }
-        private void button1_Click(object sender, EventArgs e) { }
-        private void tabPage1_Click(object sender, EventArgs e) { }
         private void Form1_Load(object sender, EventArgs e)
         {
             mainTabs.Size = this.Size;
@@ -31,15 +29,6 @@ namespace shop
 
             createAddOrder();
         }
-        private void tabPage1_Click_1(object sender, EventArgs e) { }
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
-        private void button1_Click_2(object sender, EventArgs e) { }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
-        private void tabPage4_Click(object sender, EventArgs e) { }
-        private void tabPage5_Click(object sender, EventArgs e) { }
-        private void textBox1_TextChanged(object sender, EventArgs e) { }
-        private void label1_Click(object sender, EventArgs e) { }
-        private void makersTab_Click(object sender, EventArgs e) { }
 
         private List<string> test = new List<string>();
 
@@ -48,6 +37,7 @@ namespace shop
         private OleDbDataAdapter adapter1 = new OleDbDataAdapter(), adapter2 = new OleDbDataAdapter(), adapter3 = new OleDbDataAdapter();
         private DataSet dataSet1 = new DataSet(), dataSet2 = new DataSet(), dataSet3 = new DataSet();
         private List<ComboBox> orderBoxes = new List<ComboBox>();
+        string last_se, Orders = "";
         internal void AddMaker(string FirstName, string LastName, string PhoneNumber, string MakerAddress, string NationalCode)
         {
 
@@ -72,6 +62,18 @@ namespace shop
             adapter1.Fill(dataSet1, "Makers");
             makersDGV.DataSource = dataSet1.Tables[0].DefaultView;
             makersDGV.Refresh();
+
+            connection.Close();
+        }
+        internal void DeleteMaker(int ID)
+        {
+
+            connection.Open();
+            string query = $"DELETE FROM Makers WHERE Maker_ID = {ID};";
+
+            myCommand1.CommandText = query;
+            myCommand1.Connection = connection;
+            myCommand1.ExecuteNonQuery();
 
             connection.Close();
         }
@@ -101,6 +103,18 @@ namespace shop
 
             connection.Close();
         }
+        internal void DeleteProduct(int ID)
+        {
+
+            connection.Open();
+            string query = $"DELETE FROM Products WHERE Product_ID = {ID};";
+
+            myCommand2.CommandText = query;
+            myCommand2.Connection = connection;
+            myCommand2.ExecuteNonQuery();
+
+            connection.Close();
+        }
         internal void AddOrder(string Product_IDs, string CustomerFirstName, string CustomerLastName, string CustomerAddress, string CustomerPhone)
         {
             connection.Open();
@@ -127,7 +141,18 @@ namespace shop
 
             connection.Close();
         }
+        internal void DeleteOrder(int ID)
+        {
 
+            connection.Open();
+            string query = $"DELETE FROM Orders WHERE Order_ID = {ID};";
+
+            myCommand3.CommandText = query;
+            myCommand3.Connection = connection;
+            myCommand3.ExecuteNonQuery();
+
+            connection.Close();
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             ShowProducts();
@@ -140,10 +165,6 @@ namespace shop
             ShowProducts();
         }
 
-        private void productsTabs_Click(object sender, EventArgs e)
-        {
-        }
-        string Orders = "";
         private void button2_Click(object sender, EventArgs e)
         {
             ComboBox cb = new ComboBox();
@@ -153,10 +174,10 @@ namespace shop
             Orders = "";
             foreach (ComboBox order in orderBoxes)
             {
-                Orders += order.Text;
+                Orders += order.Text + " , ";
             }
 
-            if (AddBuyerAddressTextBox.Text != "" && AddbuyerFirsTextBox.Text != "" && AddBuyerLastTextBox.Text != "" && AddBuyerNumTextBox.Text != "" )
+            if (AddBuyerAddressTextBox.Text != "" && AddbuyerFirsTextBox.Text != "" && AddBuyerLastTextBox.Text != "" && AddBuyerNumTextBox.Text != "")
             {
                 AddOrder(Orders, AddbuyerFirsTextBox.Text, AddBuyerLastTextBox.Text, AddBuyerAddressTextBox.Text, AddBuyerNumTextBox.Text);
                 AddbuyerFirsTextBox.Text = ""; AddBuyerLastTextBox.Text = ""; AddBuyerAddressTextBox.Text = ""; AddBuyerNumTextBox.Text = "";
@@ -172,12 +193,9 @@ namespace shop
             ProductOrdersListX = 163;
             ProductOrdersListY = 34;
             addProductsListButton.Location = new Point(320, 21);
-        ShowOrders();
+            ShowOrders();
         }
 
-        private void label4_Click(object sender, EventArgs e) { }
-        private void label10_Click(object sender, EventArgs e) { }
-        private void textBox10_TextChanged(object sender, EventArgs e) { }
         private void createAddOrder()
         {
             if (ProductOrdersListNum == 12)
@@ -232,8 +250,54 @@ namespace shop
             createAddOrder();
         }
 
-        private void button3_Click_2(object sender, EventArgs e)
+
+        private void Productdelbtn_Click(object sender, EventArgs e)
         {
+            if (productsDGV.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = productsDGV.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = productsDGV.Rows[selectedrowindex];
+                last_se = Convert.ToString(selectedRow.Cells[0].Value);
+                DeleteProduct(int.Parse(last_se));
+                ShowProducts();
+            }
+            else
+            {
+                MessageBox.Show("لیست شما اطلاعاتی ندارد", "لیست خالی است", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RightAlign);
+            }
+        }
+
+        private void Makerdelbtn_Click(object sender, EventArgs e)
+        {
+            if (productsDGV.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = productsDGV.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = makersDGV.Rows[selectedrowindex];
+                last_se = Convert.ToString(selectedRow.Cells[0].Value);
+                DeleteMaker(int.Parse(last_se));
+                ShowMakers();
+            }
+            else
+            {
+                MessageBox.Show("لیست شما اطلاعاتی ندارد", "لیست خالی است", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RightAlign);
+            }
+        }
+
+        private void Orderdelbtn_Click(object sender, EventArgs e)
+        {
+
+            if (productsDGV.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = ordersDGV.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = ordersDGV.Rows[selectedrowindex];
+                last_se = Convert.ToString(selectedRow.Cells[0].Value);
+                DeleteOrder(int.Parse(last_se));
+                ShowOrders();
+            }
+            else
+            {
+                MessageBox.Show("لیست شما اطلاعاتی ندارد", "لیست خالی است", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RightAlign);
+            }
         }
     }
 }

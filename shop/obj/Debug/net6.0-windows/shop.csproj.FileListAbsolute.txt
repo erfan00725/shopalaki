@@ -97,3 +97,27 @@ D:\programming\shopalaki\shop\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\S
 D:\programming\shopalaki\shop\obj\Debug\net6.0-windows\shop.csproj.CopyComplete
 D:\programming\shopalaki\shop\obj\Debug\net6.0-windows\shop.genruntimeconfig.cache
 D:\programming\shopalaki\shop\obj\Debug\net6.0-windows\ref\shop.dll
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\bin\Debug\net6.0-windows\shop.exe
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\bin\Debug\net6.0-windows\shop.deps.json
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\bin\Debug\net6.0-windows\shop.runtimeconfig.json
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\bin\Debug\net6.0-windows\shop.dll
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\bin\Debug\net6.0-windows\shop.pdb
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\bin\Debug\net6.0-windows\System.Configuration.ConfigurationManager.dll
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\bin\Debug\net6.0-windows\System.Data.OleDb.dll
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\bin\Debug\net6.0-windows\System.Diagnostics.PerformanceCounter.dll
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\bin\Debug\net6.0-windows\System.Security.Cryptography.ProtectedData.dll
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\shop.csproj.AssemblyReference.cache
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\shop.Form1.resources
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\shop.csproj.GenerateResource.cache
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\shop.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\shop.AssemblyInfoInputs.cache
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\shop.AssemblyInfo.cs
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\shop.csproj.CoreCompileInputs.cache
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\shop.csproj.CopyComplete
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\shop.dll
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\refint\shop.dll
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\shop.pdb
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\shop.genruntimeconfig.cache
+C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\ref\shop.dll

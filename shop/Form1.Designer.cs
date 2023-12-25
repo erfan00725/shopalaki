@@ -30,6 +30,7 @@
         {
             TabControl productsTabs;
             tabPage4 = new TabPage();
+            Productdelbtn = new Button();
             productsDGV = new DataGridView();
             tabPage5 = new TabPage();
             addProductStackBox = new TextBox();
@@ -46,6 +47,7 @@
             MakersTab = new TabPage();
             makersTabs = new TabControl();
             tabPage1 = new TabPage();
+            Makerdelbtn = new Button();
             makersDGV = new DataGridView();
             addMakerTab = new TabPage();
             textBox9 = new TextBox();
@@ -62,6 +64,7 @@
             ordersTabs = new TabPage();
             tabControl1 = new TabControl();
             ordersTab = new TabPage();
+            Orderdelbtn = new Button();
             ordersDGV = new DataGridView();
             tabPage3 = new TabPage();
             addProductsListButton = new Button();
@@ -104,10 +107,10 @@
             productsTabs.SelectedIndex = 0;
             productsTabs.Size = new Size(998, 537);
             productsTabs.TabIndex = 0;
-            productsTabs.Click += productsTabs_Click;
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(Productdelbtn);
             tabPage4.Controls.Add(productsDGV);
             tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
@@ -116,7 +119,16 @@
             tabPage4.TabIndex = 0;
             tabPage4.Text = "نمایش محصولات";
             tabPage4.UseVisualStyleBackColor = true;
-            tabPage4.Click += tabPage4_Click;
+            // 
+            // Productdelbtn
+            // 
+            Productdelbtn.Location = new Point(418, 422);
+            Productdelbtn.Name = "Productdelbtn";
+            Productdelbtn.Size = new Size(94, 29);
+            Productdelbtn.TabIndex = 1;
+            Productdelbtn.Text = "حذف";
+            Productdelbtn.UseVisualStyleBackColor = true;
+            Productdelbtn.Click += Productdelbtn_Click;
             // 
             // productsDGV
             // 
@@ -146,7 +158,6 @@
             tabPage5.TabIndex = 1;
             tabPage5.Text = "اضافه کردن محصول";
             tabPage5.UseVisualStyleBackColor = true;
-            tabPage5.Click += tabPage5_Click;
             // 
             // addProductStackBox
             // 
@@ -154,7 +165,6 @@
             addProductStackBox.Name = "addProductStackBox";
             addProductStackBox.Size = new Size(201, 27);
             addProductStackBox.TabIndex = 2;
-            addProductStackBox.TextChanged += textBox1_TextChanged;
             // 
             // addProductPriceBox
             // 
@@ -162,7 +172,6 @@
             addProductPriceBox.Name = "addProductPriceBox";
             addProductPriceBox.Size = new Size(201, 27);
             addProductPriceBox.TabIndex = 2;
-            addProductPriceBox.TextChanged += textBox1_TextChanged;
             // 
             // addProductAuthorIDBox
             // 
@@ -170,7 +179,6 @@
             addProductAuthorIDBox.Name = "addProductAuthorIDBox";
             addProductAuthorIDBox.Size = new Size(201, 27);
             addProductAuthorIDBox.TabIndex = 2;
-            addProductAuthorIDBox.TextChanged += textBox1_TextChanged;
             // 
             // addProductNameBox
             // 
@@ -178,7 +186,6 @@
             addProductNameBox.Name = "addProductNameBox";
             addProductNameBox.Size = new Size(201, 27);
             addProductNameBox.TabIndex = 2;
-            addProductNameBox.TextChanged += textBox1_TextChanged;
             // 
             // addProductStack
             // 
@@ -189,7 +196,6 @@
             addProductStack.Size = new Size(130, 28);
             addProductStack.TabIndex = 1;
             addProductStack.Text = "تعداد موجودی";
-            addProductStack.Click += label1_Click;
             // 
             // addProductPrice
             // 
@@ -200,7 +206,6 @@
             addProductPrice.Size = new Size(91, 28);
             addProductPrice.TabIndex = 1;
             addProductPrice.Text = "قیمت کالا";
-            addProductPrice.Click += label1_Click;
             // 
             // addProductAuthorID
             // 
@@ -211,7 +216,6 @@
             addProductAuthorID.Size = new Size(109, 28);
             addProductAuthorID.TabIndex = 1;
             addProductAuthorID.Text = "آیدی سازنده";
-            addProductAuthorID.Click += label1_Click;
             // 
             // addProductName
             // 
@@ -222,7 +226,6 @@
             addProductName.Size = new Size(68, 28);
             addProductName.TabIndex = 1;
             addProductName.Text = "نام کالا";
-            addProductName.Click += label1_Click;
             // 
             // addProductBTN
             // 
@@ -256,7 +259,6 @@
             ProductsTab.TabIndex = 0;
             ProductsTab.Text = "محصولات";
             ProductsTab.UseVisualStyleBackColor = true;
-            ProductsTab.Click += tabPage1_Click_1;
             // 
             // MakersTab
             // 
@@ -268,7 +270,6 @@
             MakersTab.TabIndex = 1;
             MakersTab.Text = "سازندگان";
             MakersTab.UseVisualStyleBackColor = true;
-            MakersTab.Click += makersTab_Click;
             // 
             // makersTabs
             // 
@@ -283,6 +284,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(Makerdelbtn);
             tabPage1.Controls.Add(makersDGV);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
@@ -291,6 +293,16 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "نمایش سازندگان";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // Makerdelbtn
+            // 
+            Makerdelbtn.Location = new Point(408, 415);
+            Makerdelbtn.Name = "Makerdelbtn";
+            Makerdelbtn.Size = new Size(94, 29);
+            Makerdelbtn.TabIndex = 2;
+            Makerdelbtn.Text = "حذف";
+            Makerdelbtn.UseVisualStyleBackColor = true;
+            Makerdelbtn.Click += Makerdelbtn_Click;
             // 
             // makersDGV
             // 
@@ -440,6 +452,7 @@
             // 
             // ordersTab
             // 
+            ordersTab.Controls.Add(Orderdelbtn);
             ordersTab.Controls.Add(ordersDGV);
             ordersTab.Location = new Point(4, 29);
             ordersTab.Name = "ordersTab";
@@ -448,6 +461,16 @@
             ordersTab.TabIndex = 0;
             ordersTab.Text = "سفارشات";
             ordersTab.UseVisualStyleBackColor = true;
+            // 
+            // Orderdelbtn
+            // 
+            Orderdelbtn.Location = new Point(398, 413);
+            Orderdelbtn.Name = "Orderdelbtn";
+            Orderdelbtn.Size = new Size(94, 29);
+            Orderdelbtn.TabIndex = 3;
+            Orderdelbtn.Text = "حذف";
+            Orderdelbtn.UseVisualStyleBackColor = true;
+            Orderdelbtn.Click += Orderdelbtn_Click;
             // 
             // ordersDGV
             // 
@@ -497,7 +520,6 @@
             AddBuyerAddressTextBox.Name = "AddBuyerAddressTextBox";
             AddBuyerAddressTextBox.Size = new Size(201, 27);
             AddBuyerAddressTextBox.TabIndex = 8;
-            AddBuyerAddressTextBox.TextChanged += textBox10_TextChanged;
             // 
             // AddBuyerNumTextBox
             // 
@@ -529,7 +551,6 @@
             label10.Size = new Size(56, 28);
             label10.TabIndex = 4;
             label10.Text = "آدرس";
-            label10.Click += label10_Click;
             // 
             // label5
             // 
@@ -662,5 +683,8 @@
         private TextBox AddBuyerAddressTextBox;
         private Label label10;
         private Button addProductsListButton;
+        private Button Productdelbtn;
+        private Button Makerdelbtn;
+        private Button Orderdelbtn;
     }
 }
