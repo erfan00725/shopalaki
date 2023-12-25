@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mahdi\\source\\repos\\shop2\\shopalaki\\shop\\shop.csproj": {}
+    "D:\\programming\\shopalaki\\shop\\shop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mahdi\\source\\repos\\shop2\\shopalaki\\shop\\shop.csproj": {
+    "D:\\programming\\shopalaki\\shop\\shop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mahdi\\source\\repos\\shop2\\shopalaki\\shop\\shop.csproj",
+        "projectUniqueName": "D:\\programming\\shopalaki\\shop\\shop.csproj",
         "projectName": "shop",
-        "projectPath": "C:\\Users\\mahdi\\source\\repos\\shop2\\shopalaki\\shop\\shop.csproj",
-        "packagesPath": "C:\\Users\\mahdi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mahdi\\source\\repos\\shop2\\shopalaki\\shop\\obj\\",
+        "projectPath": "D:\\programming\\shopalaki\\shop\\shop.csproj",
+        "packagesPath": "C:\\Users\\erfan\\.nuget\\packages\\",
+        "outputPath": "D:\\programming\\shopalaki\\shop\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\mahdi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\erfan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

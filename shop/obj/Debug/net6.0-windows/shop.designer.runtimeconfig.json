@@ -12,8 +12,9 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\mahdi\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\mahdi\\.nuget\\packages"
+      "C:\\Users\\erfan\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\erfan\\.nuget\\packages",
+      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

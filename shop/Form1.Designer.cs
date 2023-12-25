@@ -65,10 +65,10 @@
             ordersDGV = new DataGridView();
             tabPage3 = new TabPage();
             addProductsListButton = new Button();
-            textBox10 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
+            AddBuyerAddressTextBox = new TextBox();
+            AddBuyerNumTextBox = new TextBox();
+            AddBuyerLastTextBox = new TextBox();
+            AddbuyerFirsTextBox = new TextBox();
             label10 = new Label();
             label5 = new Label();
             label6 = new Label();
@@ -462,10 +462,10 @@
             // tabPage3
             // 
             tabPage3.Controls.Add(addProductsListButton);
-            tabPage3.Controls.Add(textBox10);
-            tabPage3.Controls.Add(textBox5);
-            tabPage3.Controls.Add(textBox6);
-            tabPage3.Controls.Add(textBox7);
+            tabPage3.Controls.Add(AddBuyerAddressTextBox);
+            tabPage3.Controls.Add(AddBuyerNumTextBox);
+            tabPage3.Controls.Add(AddBuyerLastTextBox);
+            tabPage3.Controls.Add(AddbuyerFirsTextBox);
             tabPage3.Controls.Add(label10);
             tabPage3.Controls.Add(label5);
             tabPage3.Controls.Add(label6);
@@ -491,34 +491,34 @@
             addProductsListButton.UseVisualStyleBackColor = true;
             addProductsListButton.Click += button3_Click_1;
             // 
-            // textBox10
+            // AddBuyerAddressTextBox
             // 
-            textBox10.Location = new Point(718, 332);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(201, 27);
-            textBox10.TabIndex = 8;
-            textBox10.TextChanged += textBox10_TextChanged;
+            AddBuyerAddressTextBox.Location = new Point(718, 332);
+            AddBuyerAddressTextBox.Name = "AddBuyerAddressTextBox";
+            AddBuyerAddressTextBox.Size = new Size(201, 27);
+            AddBuyerAddressTextBox.TabIndex = 8;
+            AddBuyerAddressTextBox.TextChanged += textBox10_TextChanged;
             // 
-            // textBox5
+            // AddBuyerNumTextBox
             // 
-            textBox5.Location = new Point(718, 276);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(201, 27);
-            textBox5.TabIndex = 8;
+            AddBuyerNumTextBox.Location = new Point(718, 276);
+            AddBuyerNumTextBox.Name = "AddBuyerNumTextBox";
+            AddBuyerNumTextBox.Size = new Size(201, 27);
+            AddBuyerNumTextBox.TabIndex = 8;
             // 
-            // textBox6
+            // AddBuyerLastTextBox
             // 
-            textBox6.Location = new Point(255, 332);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(201, 27);
-            textBox6.TabIndex = 9;
+            AddBuyerLastTextBox.Location = new Point(255, 332);
+            AddBuyerLastTextBox.Name = "AddBuyerLastTextBox";
+            AddBuyerLastTextBox.Size = new Size(201, 27);
+            AddBuyerLastTextBox.TabIndex = 9;
             // 
-            // textBox7
+            // AddbuyerFirsTextBox
             // 
-            textBox7.Location = new Point(255, 271);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(201, 27);
-            textBox7.TabIndex = 10;
+            AddbuyerFirsTextBox.Location = new Point(255, 271);
+            AddbuyerFirsTextBox.Name = "AddbuyerFirsTextBox";
+            AddbuyerFirsTextBox.Size = new Size(201, 27);
+            AddbuyerFirsTextBox.TabIndex = 10;
             // 
             // label10
             // 
@@ -565,7 +565,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(70, 35);
+            label8.Location = new Point(49, 34);
             label8.Name = "label8";
             label8.Size = new Size(90, 28);
             label8.TabIndex = 7;
@@ -646,9 +646,9 @@
         private Label label3;
         private Label label4;
         private Button button1;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private TextBox textBox7;
+        private TextBox AddBuyerNumTextBox;
+        private TextBox AddBuyerLastTextBox;
+        private TextBox AddbuyerFirsTextBox;
         private Label label5;
         private Label label6;
         private Label label7;
@@ -659,7 +659,7 @@
         private DataGridView ordersDGV;
         private TextBox textBox9;
         private Label label9;
-        private TextBox textBox10;
+        private TextBox AddBuyerAddressTextBox;
         private Label label10;
         private Button addProductsListButton;
     }
