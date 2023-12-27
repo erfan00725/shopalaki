@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Collections;
 
 
 namespace shop
@@ -20,139 +21,123 @@ namespace shop
         private OleDbCommand myCommand1 = new OleDbCommand(), myCommand2 = new OleDbCommand(), myCommand3 = new OleDbCommand();
         private OleDbDataAdapter adapter1 = new OleDbDataAdapter(), adapter2 = new OleDbDataAdapter(), adapter3 = new OleDbDataAdapter();
         private DataSet dataSet1 = new DataSet(), dataSet2 = new DataSet(), dataSet3 = new DataSet();
+        DataGridView dgv = new DataGridView();
         private List<ComboBox> orderBoxes = new List<ComboBox>();
-        private string last_se, Orders = "";
+        private string query = "",SelectedRowID, Orders = "";
         private int ProductOrdersListNum = 0, ProductOrdersListX = 163, ProductOrdersListY = 34;
 
         private void Form1_Load(object sender, EventArgs e)
         {
             mainTabs.Size = this.Size;
-            ShowMakers();
-            ShowOrders();
-            ShowProducts();
+            show("Makers");
+            show("Products");
+            show("Orders");
             createAddOrder();
         }
-        internal void AddMaker(string FirstName, string LastName, string PhoneNumber, string MakerAddress, string NationalCode)
+        internal void add(string TableName, params string[] Values)
         {
+            switch (TableName)
+            {
+                case "Products":
+                    query = $"insert into Products (ProductName ,Maker_ID, Price, Stuck, ProductType) " +
+                        $"values('{Values[0]}','{Values[1]}','{Values[2]}','{Values[3]}','{Values[4]}');";
+                    break;
+                case "Makers":
+                    query = $"insert into Makers (FirstName, LastName, PhoneNumber, MakerAddress, NationalCode) " +
+                        $"values(\'{Values[0]}','{Values[1]}','{Values[2]}','{Values[3]}','{Values[4]}');";
+                    break;
+                case "Orders":
+                    query = $"insert into Orders (Product_IDs, CustomerFirstName, CustomerLastName, CustomerAddress, CustomerPhone) " +
+                        $"values(\'{Values[0]} \',\' {Values[1]} \',\' {Values[2]} \',\' {Values[3]} \',\' {Values[4]}');";
+                    break;
+                default:
+                    break;
+            }
+
             connection.Open();
 
-            string query = $"insert into Makers (FirstName, LastName, PhoneNumber, MakerAddress, NationalCode) values(\'{FirstName}\',\'{LastName}\',\'{PhoneNumber}\','{MakerAddress}','{NationalCode}');";
             myCommand1.CommandText = query;
             myCommand1.Connection = connection;
             myCommand1.ExecuteNonQuery();
 
             connection.Close();
         }
-        internal void ShowMakers()
+        internal void delete(string TableName, int ID)
         {
+            switch (TableName)
+            {
+                case "Products":
+                    query = $"DELETE FROM Products WHERE Product_ID = {ID};";
+                    break;
+                case "Makers":
+                    query = $"DELETE FROM Makers WHERE Maker_ID = {ID};";
+                    break;
+                case "Orders":
+                    query = $"DELETE FROM Orders WHERE Order_ID = {ID};";
+                    break;
+                default:
+                    break;
+            }
+
             connection.Open();
 
-            string query = $"select * from Makers;";
-            dataSet1.Clear();
-            myCommand1.CommandText = query;
-            myCommand1.Connection = connection;
-            adapter1.SelectCommand = myCommand1;
-            adapter1.Fill(dataSet1, "Makers");
-            makersDGV.DataSource = dataSet1.Tables[0].DefaultView;
-            makersDGV.Refresh();
-
-            connection.Close();
-        }
-        internal void DeleteMaker(int ID)
-        {
-            connection.Open();
-
-            string query = $"DELETE FROM Makers WHERE Maker_ID = {ID};";
             myCommand1.CommandText = query;
             myCommand1.Connection = connection;
             myCommand1.ExecuteNonQuery();
 
             connection.Close();
         }
-        internal void AddProduct(string ProductName, int Maker_ID, int Price, int Stuck, string ProductType)
+        internal void show(string TableName)
         {
             connection.Open();
+            query = $"select * from {TableName}";
 
-            string query = $"insert into Products (ProductName ,Maker_ID, Price, Stuck, ProductType) values('{ProductName}','{Maker_ID}','{Price}','{Stuck}','{ProductType}');";
-            myCommand2.CommandText = query;
-            myCommand2.Connection = connection;
-            myCommand2.ExecuteNonQuery();
-
-            connection.Close();
-        }
-        internal void ShowProducts()
-        {
-            connection.Open();
-
-            string query = $"select * from Products;";
-            dataSet2.Clear();
-            myCommand2.CommandText = query;
-            myCommand2.Connection = connection;
-            adapter2.SelectCommand = myCommand2;
-            adapter2.Fill(dataSet2, "Products");
-            productsDGV.DataSource = dataSet2.Tables[0].DefaultView;
-            productsDGV.Refresh();
-
-            connection.Close();
-        }
-        internal void DeleteProduct(int ID)
-        {
-            connection.Open();
-
-            string query = $"DELETE FROM Products WHERE Product_ID = {ID};";
-            myCommand2.CommandText = query;
-            myCommand2.Connection = connection;
-            myCommand2.ExecuteNonQuery();
-
-            connection.Close();
-        }
-        internal void AddOrder(string Product_IDs, string CustomerFirstName, string CustomerLastName, string CustomerAddress, string CustomerPhone)
-        {
-            connection.Open();
-
-            string query = $"insert into Orders (Product_IDs, CustomerFirstName, CustomerLastName, CustomerAddress, CustomerPhone) values(\'{Product_IDs}\',\'{CustomerFirstName}\',\'{CustomerLastName}\',\'{CustomerAddress}\',\'{CustomerPhone}');";
-            myCommand3.CommandText = query;
-            myCommand3.Connection = connection;
-            myCommand3.ExecuteNonQuery();
-
-            connection.Close();
-        }
-        internal void ShowOrders()
-        {
-            connection.Open();
-
-            string query = $"select * from Orders;";
-            dataSet3.Clear();
-            myCommand3.CommandText = query;
-            myCommand3.Connection = connection;
-            adapter3.SelectCommand = myCommand3;
-            adapter3.Fill(dataSet3, "Orders");
-            ordersDGV.DataSource = dataSet3.Tables[0].DefaultView;
-            ordersDGV.Refresh();
-
-            connection.Close();
-        }
-        internal void DeleteOrder(int ID)
-        {
-            connection.Open();
-
-            string query = $"DELETE FROM Orders WHERE Order_ID = {ID};";
-            myCommand3.CommandText = query;
-            myCommand3.Connection = connection;
-            myCommand3.ExecuteNonQuery();
+            switch (TableName)
+            {
+                case "Products":
+                    dataSet2.Clear();
+                    myCommand2.CommandText = query;
+                    myCommand2.Connection = connection;
+                    adapter2.SelectCommand = myCommand2;
+                    adapter2.Fill(dataSet2, TableName);
+                    productsDGV.DataSource = dataSet2.Tables[0].DefaultView;
+                    productsDGV.Refresh();
+                    break;
+                case "Makers":
+                    dataSet1.Clear();
+                    myCommand1.CommandText = query;
+                    myCommand1.Connection = connection;
+                    adapter1.SelectCommand = myCommand1;
+                    adapter1.Fill(dataSet1, TableName);
+                    makersDGV.DataSource = dataSet1.Tables[0].DefaultView;
+                    makersDGV.Refresh();
+                    break;
+                case "Orders":
+                    dataSet3.Clear();
+                    myCommand3.CommandText = query;
+                    myCommand3.Connection = connection;
+                    adapter3.SelectCommand = myCommand3;
+                    adapter3.Fill(dataSet3, TableName);
+                    ordersDGV.DataSource = dataSet3.Tables[0].DefaultView;
+                    ordersDGV.Refresh();
+                    break;
+                default:
+                    break;
+            }
 
             connection.Close();
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            ShowProducts();
+            show("Products");
         }
 
         private void addProductBTN_Click(object sender, EventArgs e)
         {
-            string productName = addProductNameBox.Text;
-            addProductNameBox.Text = "";
-            ShowProducts();
+            string productName = addProductNameBox.Text, productMakerID = addProductAuthorIDBox.Text, productPrice = addProductPriceBox.Text, productStack = addProductStackBox.Text, productType = "";
+            add("Products",productName, productMakerID, productPrice, productPrice, productType);
+            addProductNameBox.Text = ""; addProductAuthorIDBox.Text = ""; addProductPriceBox.Text = ""; addProductStackBox.Text = "";
+            show("Products");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -169,7 +154,7 @@ namespace shop
 
             if (AddBuyerAddressTextBox.Text != "" && AddbuyerFirsTextBox.Text != "" && AddBuyerLastTextBox.Text != "" && AddBuyerNumTextBox.Text != "")
             {
-                AddOrder(Orders, AddbuyerFirsTextBox.Text, AddBuyerLastTextBox.Text, AddBuyerAddressTextBox.Text, AddBuyerNumTextBox.Text);
+                add("Orders", Orders, AddbuyerFirsTextBox.Text, AddBuyerLastTextBox.Text, AddBuyerAddressTextBox.Text, AddBuyerNumTextBox.Text);
                 AddbuyerFirsTextBox.Text = ""; AddBuyerLastTextBox.Text = ""; AddBuyerAddressTextBox.Text = ""; AddBuyerNumTextBox.Text = "";
             }
             for (int i = 0; i < ProductOrdersListNum; i++)
@@ -183,7 +168,7 @@ namespace shop
             ProductOrdersListX = 163;
             ProductOrdersListY = 34;
             addProductsListButton.Location = new Point(320, 21);
-            ShowOrders();
+            show("Orders");
         }
 
         private void createAddOrder()
@@ -247,9 +232,9 @@ namespace shop
             {
                 int selectedrowindex = productsDGV.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = productsDGV.Rows[selectedrowindex];
-                last_se = Convert.ToString(selectedRow.Cells[0].Value);
-                DeleteProduct(int.Parse(last_se));
-                ShowProducts();
+                SelectedRowID = Convert.ToString(selectedRow.Cells[0].Value);
+                delete("Products", int.Parse(SelectedRowID));
+                show("Products");
             }
             else
             {
@@ -263,9 +248,9 @@ namespace shop
             {
                 int selectedrowindex = productsDGV.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = makersDGV.Rows[selectedrowindex];
-                last_se = Convert.ToString(selectedRow.Cells[0].Value);
-                DeleteMaker(int.Parse(last_se));
-                ShowMakers();
+                SelectedRowID = Convert.ToString(selectedRow.Cells[0].Value);
+                delete("Makers", int.Parse(SelectedRowID));
+                show("Makers");
             }
             else
             {
@@ -280,9 +265,9 @@ namespace shop
             {
                 int selectedrowindex = ordersDGV.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = ordersDGV.Rows[selectedrowindex];
-                last_se = Convert.ToString(selectedRow.Cells[0].Value);
-                DeleteOrder(int.Parse(last_se));
-                ShowOrders();
+                SelectedRowID = Convert.ToString(selectedRow.Cells[0].Value);
+                delete("Orders", int.Parse(SelectedRowID));
+                show("Orders");
             }
             else
             {
