@@ -75,7 +75,7 @@
             label7 = new Label();
             label8 = new Label();
             button2 = new Button();
-            label11 = new Label();
+            button3 = new Button();
             productsTabs = new TabControl();
             productsTabs.SuspendLayout();
             tabPage4.SuspendLayout();
@@ -110,6 +110,7 @@
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(button3);
             tabPage4.Controls.Add(productsDGV);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Margin = new Padding(3, 2, 3, 2);
@@ -488,7 +489,6 @@
             // 
             // tabPage3
             // 
-            tabPage3.Controls.Add(label11);
             tabPage3.Controls.Add(addProductsListButton);
             tabPage3.Controls.Add(textBox10);
             tabPage3.Controls.Add(textBox5);
@@ -513,7 +513,7 @@
             // 
             addProductsListButton.Location = new Point(280, 16);
             addProductsListButton.Name = "addProductsListButton";
-            addProductsListButton.Size = new Size(75, 45);
+            addProductsListButton.Size = new Size(79, 45);
             addProductsListButton.TabIndex = 12;
             addProductsListButton.Text = "اضافه کردن سفارش";
             addProductsListButton.UseVisualStyleBackColor = true;
@@ -614,14 +614,15 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // label11
+            // button3
             // 
-            label11.AutoSize = true;
-            label11.Location = new Point(230, 160);
-            label11.Name = "label11";
-            label11.Size = new Size(44, 15);
-            label11.TabIndex = 13;
-            label11.Text = "label11";
+            button3.Location = new Point(162, 301);
+            button3.Name = "button3";
+            button3.Size = new Size(75, 23);
+            button3.TabIndex = 1;
+            button3.Text = "button3";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click_2;
             // 
             // Form1
             // 
@@ -705,6 +706,6 @@
         private TextBox textBox10;
         private Label label10;
         private Button addProductsListButton;
-        private Label label11;
+        private Button button3;
     }
 }

@@ -267,12 +267,19 @@ namespace shop
             ProductOrdersListX += 150;
             addProductsListButton.Location = new Point(ProductOrdersListX + 5, ProductOrdersListY - 10);
 
-            label11.Text = ProductOrdersListNum.ToString();
         }
 
         private void button3_Click_1(object sender, EventArgs e)
         {
             createAddOrder();
+        }
+
+        private void button3_Click_2(object sender, EventArgs e)
+        {
+            string[] inputs = ["نام کالا", "آیدی سازنده", "قیمت کالا", "تعداد موجودی"];
+            editForm editForm = new editForm(inputs);
+
+            editForm.Show();
         }
     }
 }

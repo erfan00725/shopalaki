@@ -72,3 +72,4 @@ E:\programming\shopalaki\shop\obj\Debug\net6.0-windows\refint\shop.dll
 E:\programming\shopalaki\shop\obj\Debug\net6.0-windows\shop.pdb
 E:\programming\shopalaki\shop\obj\Debug\net6.0-windows\shop.genruntimeconfig.cache
 E:\programming\shopalaki\shop\obj\Debug\net6.0-windows\ref\shop.dll
+E:\programming\shopalaki\shop\obj\Debug\net6.0-windows\shop.editForm.resources
