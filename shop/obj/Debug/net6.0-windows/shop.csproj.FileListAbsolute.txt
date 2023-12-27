@@ -121,3 +121,4 @@ C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows
 C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\shop.pdb
 C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\shop.genruntimeconfig.cache
 C:\Users\mahdi\source\repos\shop2 - Copy\shopalaki\shop\obj\Debug\net6.0-windows\ref\shop.dll
+E:\programming\shopalaki\shop\obj\Debug\net6.0-windows\shop.editForm.resources

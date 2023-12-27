@@ -23,7 +23,7 @@ namespace shop
         private DataSet dataSet1 = new DataSet(), dataSet2 = new DataSet(), dataSet3 = new DataSet();
         DataGridView dgv = new DataGridView();
         private List<ComboBox> orderBoxes = new List<ComboBox>();
-        private string query = "",SelectedRowID, Orders = "";
+        private string query = "", SelectedRowID, Orders = "";
         private int ProductOrdersListNum = 0, ProductOrdersListX = 163, ProductOrdersListY = 34;
 
         private void Form1_Load(object sender, EventArgs e)
@@ -135,7 +135,7 @@ namespace shop
         private void addProductBTN_Click(object sender, EventArgs e)
         {
             string productName = addProductNameBox.Text, productMakerID = addProductAuthorIDBox.Text, productPrice = addProductPriceBox.Text, productStack = addProductStackBox.Text, productType = "";
-            add("Products",productName, productMakerID, productPrice, productPrice, productType);
+            add("Products", productName, productMakerID, productPrice, productPrice, productType);
             addProductNameBox.Text = ""; addProductAuthorIDBox.Text = ""; addProductPriceBox.Text = ""; addProductStackBox.Text = "";
             show("Products");
         }
@@ -273,6 +273,15 @@ namespace shop
             {
                 MessageBox.Show("لیست شما اطلاعاتی ندارد", "لیست خالی است", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RightAlign);
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string[] inputs = ["نام کالا", "آیدی سازنده", "قیمت کالا", "تعداد موجودی"];
+
+            editForm edit = new editForm(inputs);
+
+            edit.Show();
         }
     }
 }
