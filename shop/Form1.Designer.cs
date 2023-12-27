@@ -31,6 +31,7 @@
             TabControl productsTabs;
             tabPage4 = new TabPage();
             button3 = new Button();
+            button4 = new Button();
             Productdelbtn = new Button();
             productsDGV = new DataGridView();
             tabPage5 = new TabPage();
@@ -79,7 +80,6 @@
             label7 = new Label();
             label8 = new Label();
             button2 = new Button();
-            button4 = new Button();
             productsTabs = new TabControl();
             productsTabs.SuspendLayout();
             tabPage4.SuspendLayout();
@@ -135,6 +135,17 @@
             button3.TabIndex = 2;
             button3.Text = "ثبت تغییرات";
             button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(261, 316);
+            button4.Margin = new Padding(3, 2, 3, 2);
+            button4.Name = "button4";
+            button4.Size = new Size(82, 22);
+            button4.TabIndex = 1;
+            button4.Text = "ادیت";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // Productdelbtn
             // 
@@ -549,7 +560,7 @@
             // 
             // addProductsListButton
             // 
-            addProductsListButton.Location = new Point(280, 16);
+            addProductsListButton.Location = new Point(280, 34);
             addProductsListButton.Name = "addProductsListButton";
             addProductsListButton.Size = new Size(75, 45);
             addProductsListButton.TabIndex = 12;
@@ -572,6 +583,7 @@
             AddBuyerNumTextBox.Name = "AddBuyerNumTextBox";
             AddBuyerNumTextBox.Size = new Size(176, 23);
             AddBuyerNumTextBox.TabIndex = 8;
+            AddBuyerNumTextBox.KeyPress += AddBuyerNumTextBox_KeyPress;
             // 
             // AddBuyerLastTextBox
             // 
@@ -633,11 +645,11 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(43, 26);
+            label8.Location = new Point(61, 34);
             label8.Name = "label8";
-            label8.Size = new Size(73, 21);
+            label8.Size = new Size(80, 21);
             label8.TabIndex = 7;
-            label8.Text = "سفارشات";
+            label8.Text = "سفارشات :";
             // 
             // button2
             // 
@@ -649,17 +661,6 @@
             button2.Text = "اضافه کردن";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(261, 316);
-            button4.Margin = new Padding(3, 2, 3, 2);
-            button4.Name = "button4";
-            button4.Size = new Size(82, 22);
-            button4.TabIndex = 1;
-            button4.Text = "ادیت";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
             // 
             // Form1
             // 

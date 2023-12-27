@@ -15,15 +15,22 @@ namespace shop
         private List<TextBox> editTextBoxes = new List<TextBox> { };
         private List<Label> editLabels = new List<Label> { };
 
+        private string[] inputs;
+
         private int textBoxesX = 454;
         private int textBoxesY = 67;
 
         private int labelsX = 278;
         private int labeslY = 66;
 
-        public editForm(string[] inputs)
+        private Action<string[]> exitAction;
+
+        public editForm(string[] inputs, Action<string[]> func)
         {
             InitializeComponent();
+
+            this.inputs = inputs;
+
             int index = 0;
             foreach (var item in inputs)
             {
@@ -40,6 +47,8 @@ namespace shop
 
                 index++;
             }
+
+            exitAction = func;
         }
 
         public string[] getEdits()
@@ -56,7 +65,22 @@ namespace shop
 
         private void editSubmit_Click(object sender, EventArgs e)
         {
-            this.Close();
+
+            bool arrayEmpty = false;
+
+            foreach (var item in this.editTextBoxes)
+            {
+                if (item.Text == "")
+                {
+                    arrayEmpty = true;
+                }
+            }
+            if (!arrayEmpty)
+            {
+                exitAction(this.getEdits());
+
+                this.Close();
+            }
         }
     }
 }

@@ -22,9 +22,12 @@ namespace shop
         private OleDbDataAdapter adapter1 = new OleDbDataAdapter(), adapter2 = new OleDbDataAdapter(), adapter3 = new OleDbDataAdapter();
         private DataSet dataSet1 = new DataSet(), dataSet2 = new DataSet(), dataSet3 = new DataSet();
         DataGridView dgv = new DataGridView();
+
+
         private List<ComboBox> orderBoxes = new List<ComboBox>();
         private string query = "", SelectedRowID, Orders = "";
-        private int ProductOrdersListNum = 0, ProductOrdersListX = 163, ProductOrdersListY = 34;
+        private const int ProductOrdersListXCONST = 150;
+        private int ProductOrdersListNum = 0, ProductOrdersListX = ProductOrdersListXCONST, ProductOrdersListY = 34;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -127,49 +130,7 @@ namespace shop
 
             connection.Close();
         }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            show("Products");
-        }
 
-        private void addProductBTN_Click(object sender, EventArgs e)
-        {
-            string productName = addProductNameBox.Text, productMakerID = addProductAuthorIDBox.Text, productPrice = addProductPriceBox.Text, productStack = addProductStackBox.Text, productType = "";
-            add("Products", productName, productMakerID, productPrice, productPrice, productType);
-            addProductNameBox.Text = ""; addProductAuthorIDBox.Text = ""; addProductPriceBox.Text = ""; addProductStackBox.Text = "";
-            show("Products");
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ComboBox cb = new ComboBox();
-            cb.Location = new Point(163, 34);
-            cb.Size = new Size(151, 28);
-            cb.Name = "cb1";
-            Orders = "";
-            foreach (ComboBox order in orderBoxes)
-            {
-                Orders += order.Text + " , ";
-            }
-
-            if (AddBuyerAddressTextBox.Text != "" && AddbuyerFirsTextBox.Text != "" && AddBuyerLastTextBox.Text != "" && AddBuyerNumTextBox.Text != "")
-            {
-                add("Orders", Orders, AddbuyerFirsTextBox.Text, AddBuyerLastTextBox.Text, AddBuyerAddressTextBox.Text, AddBuyerNumTextBox.Text);
-                AddbuyerFirsTextBox.Text = ""; AddBuyerLastTextBox.Text = ""; AddBuyerAddressTextBox.Text = ""; AddBuyerNumTextBox.Text = "";
-            }
-            for (int i = 0; i < ProductOrdersListNum; i++)
-            {
-            }
-            foreach (var item in orderBoxes)
-            {
-                tabPage3.Controls.Remove(item);
-            }
-            ProductOrdersListNum = 0;
-            ProductOrdersListX = 163;
-            ProductOrdersListY = 34;
-            addProductsListButton.Location = new Point(320, 21);
-            show("Orders");
-        }
 
         private void createAddOrder()
         {
@@ -180,7 +141,7 @@ namespace shop
             else if (ProductOrdersListNum % 4 == 0 && ProductOrdersListNum != 0)
             {
                 ProductOrdersListY = ProductOrdersListY + 50;
-                ProductOrdersListX = 163;
+                ProductOrdersListX = ProductOrdersListXCONST;
             }
             connection.Open();
             string query = $"select * from Products;";
@@ -210,15 +171,54 @@ namespace shop
 
             ComboBox cb = new ComboBox();
             cb.Location = new Point(ProductOrdersListX, ProductOrdersListY);
-            cb.Size = new Size(151, 28);
+            cb.Size = new Size(145, 28);
             cb.Name = "ProductOrdersList" + ProductOrdersListNum++.ToString();
             cb.DataSource = cbdata;
             orderBoxes.Add(cb);
             tabPage3.Controls.Add(cb);
-            ProductOrdersListX += 175;
+            ProductOrdersListX += 150;
             addProductsListButton.Location = new Point(ProductOrdersListX + 5, ProductOrdersListY - 10);
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            show("Products");
+        }
+
+        private void addProductBTN_Click(object sender, EventArgs e)
+        {
+            string productName = addProductNameBox.Text, productMakerID = addProductAuthorIDBox.Text, productPrice = addProductPriceBox.Text, productStack = addProductStackBox.Text, productType = "";
+            add("Products", productName, productMakerID, productPrice, productPrice, productType);
+            addProductNameBox.Text = ""; addProductAuthorIDBox.Text = ""; addProductPriceBox.Text = ""; addProductStackBox.Text = "";
+            show("Products");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            foreach (ComboBox order in orderBoxes)
+            {
+                Orders += order.Text + " , ";
+            }
+
+            if (AddBuyerAddressTextBox.Text != "" && AddbuyerFirsTextBox.Text != "" && AddBuyerLastTextBox.Text != "" && AddBuyerNumTextBox.Text != "")
+            {
+                add("Orders", Orders, AddbuyerFirsTextBox.Text, AddBuyerLastTextBox.Text, AddBuyerAddressTextBox.Text, AddBuyerNumTextBox.Text);
+                AddbuyerFirsTextBox.Text = ""; AddBuyerLastTextBox.Text = ""; AddBuyerAddressTextBox.Text = ""; AddBuyerNumTextBox.Text = "";
+                ProductOrdersListNum = 0;
+                ProductOrdersListX = ProductOrdersListXCONST;
+                ProductOrdersListY = 34;
+                Orders = "";
+            }
+            foreach (var item in orderBoxes)
+            {
+                tabPage3.Controls.Remove(item);
+            }
+
+            createAddOrder();
+            show("Orders");
+        }
+
 
         private void button3_Click_1(object sender, EventArgs e)
         {
@@ -278,10 +278,27 @@ namespace shop
         private void button4_Click(object sender, EventArgs e)
         {
             string[] inputs = ["نام کالا", "آیدی سازنده", "قیمت کالا", "تعداد موجودی"];
+            string[] editedProducts;
 
-            editForm edit = new editForm(inputs);
+            void editExit(string[] edited)
+            {
 
-            edit.Show();
+
+
+                editedProducts = edited;
+
+            }
+
+            editForm productsEdit = new editForm(inputs, editExit);
+
+
+
+            productsEdit.Show();
+        }
+
+        private void AddBuyerNumTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }
