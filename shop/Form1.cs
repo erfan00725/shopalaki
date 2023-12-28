@@ -5,7 +5,8 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Collections;
-
+using System.Runtime.InteropServices;
+using System;
 
 namespace shop
 {
@@ -21,22 +22,24 @@ namespace shop
         private OleDbCommand myCommand1 = new OleDbCommand(), myCommand2 = new OleDbCommand(), myCommand3 = new OleDbCommand();
         private OleDbDataAdapter adapter1 = new OleDbDataAdapter(), adapter2 = new OleDbDataAdapter(), adapter3 = new OleDbDataAdapter();
         private DataSet dataSet1 = new DataSet(), dataSet2 = new DataSet(), dataSet3 = new DataSet();
-        DataGridView dgv = new DataGridView();
-
-
         private List<ComboBox> orderBoxes = new List<ComboBox>();
-        private string query = "", SelectedRowID, Orders = "";
+        private string query = "", Orders = "";
         private const int ProductOrdersListXCONST = 150;
         private int ProductOrdersListNum = 0, ProductOrdersListX = ProductOrdersListXCONST, ProductOrdersListY = 34;
 
         private void Form1_Load(object sender, EventArgs e)
         {
             mainTabs.Size = this.Size;
-            show("Makers");
+            InitializeDataGridView(productsDGV);
+            InitializeDataGridView(makersDGV);
+            InitializeDataGridView(ordersDGV);
+
             show("Products");
+            show("Makers");
             show("Orders");
             createAddOrder();
         }
+
         internal void add(string TableName, params string[] Values)
         {
             switch (TableName)
@@ -65,6 +68,7 @@ namespace shop
 
             connection.Close();
         }
+
         internal void delete(string TableName, int ID)
         {
             switch (TableName)
@@ -90,14 +94,41 @@ namespace shop
 
             connection.Close();
         }
+
+        internal void update(string TableName, string ID, params string[] Values)
+        {
+            switch (TableName)
+            {
+                case "Products":
+                    query = $"UPDATE Products SET ProductName = \'{Values[0]}\' , Maker_ID = \'{Values[1]}\' , Price = \'{Values[2]}\' , Stuck = \'{Values[3]}\' , ProductType =  \'{Values[4]}\' WHERE Product_ID = {ID};";
+                    break;
+                case "Makers":
+                    query = $"UPDATE Makers SET FirstName = \'{Values[0]}\', LastName = \'{Values[1]}\', PhoneNumber = \'{Values[2]}\', MakerAddress = \'{Values[3]}\', NationalCode = \'{Values[4]}\' WHERE Maker_ID = {ID};";
+                    break;
+                case "Orders":
+                    query = $"DELETE FROM Orders WHERE Order_ID = ;";
+                    break;
+                default:
+                    break;
+            }
+
+            connection.Open();
+
+            myCommand1.CommandText = query;
+            myCommand1.Connection = connection;
+            myCommand1.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
         internal void show(string TableName)
         {
             connection.Open();
-            query = $"select * from {TableName}";
 
             switch (TableName)
             {
                 case "Products":
+                    query = $"select Product_ID, ProductName, Maker_ID, Price, Stuck, ProductType from {TableName}";
                     dataSet2.Clear();
                     myCommand2.CommandText = query;
                     myCommand2.Connection = connection;
@@ -107,6 +138,7 @@ namespace shop
                     productsDGV.Refresh();
                     break;
                 case "Makers":
+                    query = $"select * from {TableName}";
                     dataSet1.Clear();
                     myCommand1.CommandText = query;
                     myCommand1.Connection = connection;
@@ -116,6 +148,7 @@ namespace shop
                     makersDGV.Refresh();
                     break;
                 case "Orders":
+                    query = $"select * from {TableName}";
                     dataSet3.Clear();
                     myCommand3.CommandText = query;
                     myCommand3.Connection = connection;
@@ -131,7 +164,6 @@ namespace shop
             connection.Close();
         }
 
-
         private void createAddOrder()
         {
             if (ProductOrdersListNum == 12)
@@ -143,9 +175,10 @@ namespace shop
                 ProductOrdersListY = ProductOrdersListY + 50;
                 ProductOrdersListX = ProductOrdersListXCONST;
             }
-            connection.Open();
-            string query = $"select * from Products;";
 
+            connection.Open();
+
+            string query = $"select * from Products;";
             dataSet2.Clear();
             myCommand2.CommandText = query;
             myCommand2.Connection = connection;
@@ -178,21 +211,75 @@ namespace shop
             tabPage3.Controls.Add(cb);
             ProductOrdersListX += 150;
             addProductsListButton.Location = new Point(ProductOrdersListX + 5, ProductOrdersListY - 10);
+        }
 
+        private void InitializeDataGridView(DataGridView dgv)
+        {
+            // Initialize basic DataGridView properties.
+            dgv.BackgroundColor = Color.LightGray;
+            dgv.BorderStyle = BorderStyle.Fixed3D;
+
+            // Set property values appropriate for read-only display and 
+            // limited interactivity. 
+            dgv.AllowUserToAddRows = false;
+            dgv.AllowUserToDeleteRows = false;
+            dgv.AllowUserToOrderColumns = true;
+            dgv.ReadOnly = true;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.MultiSelect = false;
+            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            dgv.AllowUserToResizeColumns = false;
+            dgv.ColumnHeadersHeightSizeMode =
+                DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgv.AllowUserToResizeRows = false;
+            dgv.RowHeadersWidthSizeMode =
+                DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+
+            // Set the selection background color for all the cells.
+            dgv.DefaultCellStyle.SelectionBackColor = Color.White;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Set RowHeadersDefaultCellStyle.SelectionBackColor so that its default
+            // value won't override DataGridView.DefaultCellStyle.SelectionBackColor.
+            dgv.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Empty;
+
+            // Set the background color for all rows and for alternating rows. 
+            // The value for alternating rows overrides the value for all rows. 
+            dgv.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.DarkGray;
+
+            // Set the row and column header styles.
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
+            dgv.RowHeadersDefaultCellStyle.BackColor = Color.Black;
+
+            // Attach a handler to the CellFormatting event.
+            dgv.CellFormatting += new
+                DataGridViewCellFormattingEventHandler(dgv_CellFormatting);
+        }
+
+        private List<string> getValueOfCurrectCell(DataGridView dgv)
+        {
+            List<string> Values = new List<string>();
+            if (dgv.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = dgv.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dgv.Rows[selectedrowindex];
+                for (int i = 0; i < selectedRow.Cells.Count; i++)
+
+                    Values.Add(Convert.ToString(selectedRow.Cells[i].Value));
+            }
+            else
+            {
+                MessageBox.Show("لیست شما اطلاعاتی ندارد", "لیست خالی است", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RightAlign);
+            }
+            return Values;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             show("Products");
         }
-
-        //private void addProductBTN_Click(object sender, EventArgs e)
-        //{
-        //    string productName = addProductNameBox.Text, productMakerID = addProductAuthorIDBox.Text, productPrice = addProductPriceBox.Text, productStack = addProductStackBox.Text, productType = "";
-        //    add("Products", productName, productMakerID, productPrice, productPrice, productType);
-        //    addProductNameBox.Text = ""; addProductAuthorIDBox.Text = ""; addProductPriceBox.Text = ""; addProductStackBox.Text = "";
-        //    show("Products");
-        //}
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -210,6 +297,7 @@ namespace shop
                 ProductOrdersListY = 34;
                 Orders = "";
             }
+
             foreach (var item in orderBoxes)
             {
                 tabPage3.Controls.Remove(item);
@@ -219,88 +307,43 @@ namespace shop
             show("Orders");
         }
 
-
         private void button3_Click_1(object sender, EventArgs e)
         {
             createAddOrder();
         }
 
-
         private void Productdelbtn_Click(object sender, EventArgs e)
         {
-            if (productsDGV.SelectedCells.Count > 0)
-            {
-                int selectedrowindex = productsDGV.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = productsDGV.Rows[selectedrowindex];
-                SelectedRowID = Convert.ToString(selectedRow.Cells[0].Value);
-                delete("Products", int.Parse(SelectedRowID));
-                show("Products");
-            }
-            else
-            {
-                MessageBox.Show("لیست شما اطلاعاتی ندارد", "لیست خالی است", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RightAlign);
-            }
+            delete("Products", int.Parse(getValueOfCurrectCell(productsDGV)[0]));
+            show("Products");
         }
 
         private void Makerdelbtn_Click(object sender, EventArgs e)
         {
-            if (productsDGV.SelectedCells.Count > 0)
-            {
-                int selectedrowindex = productsDGV.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = makersDGV.Rows[selectedrowindex];
-                SelectedRowID = Convert.ToString(selectedRow.Cells[0].Value);
-                delete("Makers", int.Parse(SelectedRowID));
-                show("Makers");
-            }
-            else
-            {
-                MessageBox.Show("لیست شما اطلاعاتی ندارد", "لیست خالی است", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RightAlign);
-            }
+            delete("Makers", int.Parse(getValueOfCurrectCell(makersDGV)[0]));
+            show("Makers");
         }
 
         private void Orderdelbtn_Click(object sender, EventArgs e)
         {
-
-            if (productsDGV.SelectedCells.Count > 0)
-            {
-                int selectedrowindex = ordersDGV.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = ordersDGV.Rows[selectedrowindex];
-                SelectedRowID = Convert.ToString(selectedRow.Cells[0].Value);
-                delete("Orders", int.Parse(SelectedRowID));
-                show("Orders");
-            }
-            else
-            {
-                MessageBox.Show("لیست شما اطلاعاتی ندارد", "لیست خالی است", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RightAlign);
-            }
+            delete("Orders", int.Parse(getValueOfCurrectCell(ordersDGV)[0]));
+            show("Orders");
         }
 
-        private string[] showForm(string[] inputs, string[]? inputsText)
+        private string[] showForm(string[] inputs, List<string> inputsText, [Optional] Action<string[]> funk)
         {
             string[] outputs = [];
             void editExit(string[] edited)
             {
-
-
-
                 outputs = edited;
-
+                funk(outputs);
             }
 
             editForm productsEdit = new editForm(inputs, editExit, inputsText);
 
-
-
             productsEdit.Show();
 
             return outputs;
-        }
-
-        private void productsEditBTN_Click(object sender, EventArgs e)
-        {
-            string[] inputs = ["نام کالا", "آیدی سازنده", "قیمت کالا", "تعداد موجودی"];
-
-            showForm(inputs, []);
         }
 
         private void AddBuyerNumTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -308,25 +351,60 @@ namespace shop
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
+        private void productsEditBTN_Click(object sender, EventArgs e)
+        {
+            string[] inputs = ["نام کالا", "آیدی سازنده", "قیمت کالا", "تعداد موجودی", "نوع محصول"];
+            List<string> inputsTexts = getValueOfCurrectCell(productsDGV);
+            void funk(string[] outputs)
+            {
+                update("Products", inputsTexts[0], outputs);
+                show("Products");
+            }
+
+            showForm(inputs, inputsTexts.GetRange(1, 5), funk);
+        }
+
         private void addProductsBTN_Click(object sender, EventArgs e)
         {
-            string[] inputs = ["نام کالا", "آیدی سازنده", "قیمت کالا", "تعداد موجودی"];
+            string[] inputs = ["نام کالا", "آیدی سازنده", "قیمت کالا", "تعداد موجودی", "نوع محصول"];
 
-            showForm(inputs, []);
+            void funk(string[] outputs)
+            {
+                add("Products", outputs);
+                show("Products");
+            }
+
+            showForm(inputs, [], funk);
         }
 
         private void makersEditBTN_Click(object sender, EventArgs e)
         {
-            string[] inputs = ["نام", "نام خانوادگی", "کد ملی", "تلفن تماس" , "آدرس"];
+            string[] inputs = ["نام", "نام خانوادگی", "تلفن تماس", "آدرس", "کد ملی"];
+            List<string> inputsTexts = getValueOfCurrectCell(makersDGV);
+            void funk(string[] outputs)
+            {
+                update("Makers", inputsTexts[0], outputs);
+                show("Makers");
+            }
 
-            showForm(inputs, []);
+            showForm(inputs, inputsTexts.GetRange(1, 5), funk);
         }
 
         private void MakersAddBTN_Click(object sender, EventArgs e)
         {
-            string[] inputs = ["نام", "نام خانوادگی", "کد ملی", "تلفن تماس", "آدرس"];
+            string[] inputs = ["نام", "نام خانوادگی", "تلفن تماس", "آدرس", "کد ملی"];
+            void funk(string[] outputs)
+            {
+                add("Makers", outputs);
+                show("Makers");
+            }
 
-            showForm(inputs, []);
+            showForm(inputs, [], funk);
+        }
+
+        private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
         }
     }
 }
