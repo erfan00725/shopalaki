@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,30 +26,33 @@ namespace shop
 
         private Action<string[]> exitAction;
 
-        public editForm(string[] inputs, Action<string[]> func)
+        public editForm(string[] inputs, Action<string[]> func, string[]? orginal)
         {
             InitializeComponent();
 
             this.inputs = inputs;
 
-            int index = 0;
-            foreach (var item in inputs)
+            for (int i = 0; i < inputs.Count(); i++)
             {
-                editLabels.Add(new Label { Text = item, Location = new Point(labelsX, labeslY), Font = new Font("Segoe UI", 12) });
+                editLabels.Add(new Label { Text = inputs[i], Location = new Point(labelsX, labeslY), Font = new Font("Segoe UI", 12) });
 
                 editTextBoxes.Add(new TextBox { Font = new Font("Segoe UI", 10), Size = new Size(176, 23), Location = new Point(textBoxesX, textBoxesY) });
+
+                if (!(orginal.Length < i + 1))
+                {
+                    editTextBoxes[i].Text = orginal[i];
+                }
 
                 labeslY += 50;
                 textBoxesY += 50;
 
 
-                this.Controls.Add(editLabels[index]);
-                this.Controls.Add(editTextBoxes[index]);
-
-                index++;
+                this.Controls.Add(editLabels[i]);
+                this.Controls.Add(editTextBoxes[i]);
             }
 
             exitAction = func;
+            orginal = orginal;
         }
 
         public string[] getEdits()

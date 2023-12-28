@@ -186,13 +186,13 @@ namespace shop
             show("Products");
         }
 
-        private void addProductBTN_Click(object sender, EventArgs e)
-        {
-            string productName = addProductNameBox.Text, productMakerID = addProductAuthorIDBox.Text, productPrice = addProductPriceBox.Text, productStack = addProductStackBox.Text, productType = "";
-            add("Products", productName, productMakerID, productPrice, productPrice, productType);
-            addProductNameBox.Text = ""; addProductAuthorIDBox.Text = ""; addProductPriceBox.Text = ""; addProductStackBox.Text = "";
-            show("Products");
-        }
+        //private void addProductBTN_Click(object sender, EventArgs e)
+        //{
+        //    string productName = addProductNameBox.Text, productMakerID = addProductAuthorIDBox.Text, productPrice = addProductPriceBox.Text, productStack = addProductStackBox.Text, productType = "";
+        //    add("Products", productName, productMakerID, productPrice, productPrice, productType);
+        //    addProductNameBox.Text = ""; addProductAuthorIDBox.Text = ""; addProductPriceBox.Text = ""; addProductStackBox.Text = "";
+        //    show("Products");
+        //}
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -275,30 +275,58 @@ namespace shop
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private string[] showForm(string[] inputs, string[]? inputsText)
         {
-            string[] inputs = ["نام کالا", "آیدی سازنده", "قیمت کالا", "تعداد موجودی"];
-            string[] editedProducts;
-
+            string[] outputs = [];
             void editExit(string[] edited)
             {
 
 
 
-                editedProducts = edited;
+                outputs = edited;
 
             }
 
-            editForm productsEdit = new editForm(inputs, editExit);
+            editForm productsEdit = new editForm(inputs, editExit, inputsText);
 
 
 
             productsEdit.Show();
+
+            return outputs;
+        }
+
+        private void productsEditBTN_Click(object sender, EventArgs e)
+        {
+            string[] inputs = ["نام کالا", "آیدی سازنده", "قیمت کالا", "تعداد موجودی"];
+
+            showForm(inputs, []);
         }
 
         private void AddBuyerNumTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void addProductsBTN_Click(object sender, EventArgs e)
+        {
+            string[] inputs = ["نام کالا", "آیدی سازنده", "قیمت کالا", "تعداد موجودی"];
+
+            showForm(inputs, []);
+        }
+
+        private void makersEditBTN_Click(object sender, EventArgs e)
+        {
+            string[] inputs = ["نام", "نام خانوادگی", "کد ملی", "تلفن تماس" , "آدرس"];
+
+            showForm(inputs, []);
+        }
+
+        private void MakersAddBTN_Click(object sender, EventArgs e)
+        {
+            string[] inputs = ["نام", "نام خانوادگی", "کد ملی", "تلفن تماس", "آدرس"];
+
+            showForm(inputs, []);
         }
     }
 }
