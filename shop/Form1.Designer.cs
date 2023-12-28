@@ -70,10 +70,9 @@
             // 
             // addProductsBTN
             // 
-            addProductsBTN.Location = new Point(434, 299);
-            addProductsBTN.Margin = new Padding(3, 2, 3, 2);
+            addProductsBTN.Location = new Point(496, 399);
             addProductsBTN.Name = "addProductsBTN";
-            addProductsBTN.Size = new Size(85, 29);
+            addProductsBTN.Size = new Size(97, 39);
             addProductsBTN.TabIndex = 2;
             addProductsBTN.Text = "اصافه کردن";
             addProductsBTN.UseVisualStyleBackColor = true;
@@ -81,10 +80,9 @@
             // 
             // productsEditBTN
             // 
-            productsEditBTN.Location = new Point(228, 299);
-            productsEditBTN.Margin = new Padding(3, 2, 3, 2);
+            productsEditBTN.Location = new Point(261, 399);
             productsEditBTN.Name = "productsEditBTN";
-            productsEditBTN.Size = new Size(82, 29);
+            productsEditBTN.Size = new Size(94, 39);
             productsEditBTN.TabIndex = 1;
             productsEditBTN.Text = "ادیت";
             productsEditBTN.UseVisualStyleBackColor = true;
@@ -92,10 +90,9 @@
             // 
             // Productdelbtn
             // 
-            Productdelbtn.Location = new Point(329, 299);
-            Productdelbtn.Margin = new Padding(3, 2, 3, 2);
+            Productdelbtn.Location = new Point(376, 399);
             Productdelbtn.Name = "Productdelbtn";
-            Productdelbtn.Size = new Size(84, 29);
+            Productdelbtn.Size = new Size(96, 39);
             Productdelbtn.TabIndex = 1;
             Productdelbtn.Text = "حذف";
             Productdelbtn.UseVisualStyleBackColor = true;
@@ -104,13 +101,13 @@
             // productsDGV
             // 
             productsDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            productsDGV.Location = new Point(0, 4);
-            productsDGV.Margin = new Padding(3, 2, 3, 2);
+            productsDGV.Location = new Point(0, 5);
             productsDGV.Name = "productsDGV";
             productsDGV.RowHeadersWidth = 51;
             productsDGV.RowTemplate.Height = 29;
-            productsDGV.Size = new Size(838, 280);
+            productsDGV.Size = new Size(954, 373);
             productsDGV.TabIndex = 0;
+            productsDGV.CellFormatting += dgv_CellFormatting;
             // 
             // mainTabs
             // 
@@ -119,10 +116,9 @@
             mainTabs.Controls.Add(MakersTab);
             mainTabs.Controls.Add(ordersTabs);
             mainTabs.Location = new Point(0, 0);
-            mainTabs.Margin = new Padding(3, 2, 3, 2);
             mainTabs.Name = "mainTabs";
             mainTabs.SelectedIndex = 0;
-            mainTabs.Size = new Size(869, 432);
+            mainTabs.Size = new Size(993, 576);
             mainTabs.TabIndex = 0;
             // 
             // ProductsTab
@@ -131,11 +127,10 @@
             ProductsTab.Controls.Add(productsEditBTN);
             ProductsTab.Controls.Add(Productdelbtn);
             ProductsTab.Controls.Add(productsDGV);
-            ProductsTab.Location = new Point(4, 24);
-            ProductsTab.Margin = new Padding(3, 2, 3, 2);
+            ProductsTab.Location = new Point(4, 29);
             ProductsTab.Name = "ProductsTab";
-            ProductsTab.Padding = new Padding(3, 2, 3, 2);
-            ProductsTab.Size = new Size(794, 363);
+            ProductsTab.Padding = new Padding(3);
+            ProductsTab.Size = new Size(985, 543);
             ProductsTab.TabIndex = 0;
             ProductsTab.Text = "محصولات";
             ProductsTab.UseVisualStyleBackColor = true;
@@ -146,21 +141,19 @@
             MakersTab.Controls.Add(makersEditBTN);
             MakersTab.Controls.Add(Makerdelbtn);
             MakersTab.Controls.Add(makersDGV);
-            MakersTab.Location = new Point(4, 24);
-            MakersTab.Margin = new Padding(3, 2, 3, 2);
+            MakersTab.Location = new Point(4, 29);
             MakersTab.Name = "MakersTab";
-            MakersTab.Padding = new Padding(3, 2, 3, 2);
-            MakersTab.Size = new Size(794, 363);
+            MakersTab.Padding = new Padding(3);
+            MakersTab.Size = new Size(985, 543);
             MakersTab.TabIndex = 1;
             MakersTab.Text = "سازندگان";
             MakersTab.UseVisualStyleBackColor = true;
             // 
             // MakersAddBTN
             // 
-            MakersAddBTN.Location = new Point(413, 297);
-            MakersAddBTN.Margin = new Padding(3, 2, 3, 2);
+            MakersAddBTN.Location = new Point(472, 396);
             MakersAddBTN.Name = "MakersAddBTN";
-            MakersAddBTN.Size = new Size(85, 29);
+            MakersAddBTN.Size = new Size(97, 39);
             MakersAddBTN.TabIndex = 4;
             MakersAddBTN.Text = "اصافه کردن";
             MakersAddBTN.UseVisualStyleBackColor = true;
@@ -168,10 +161,9 @@
             // 
             // makersEditBTN
             // 
-            makersEditBTN.Location = new Point(207, 297);
-            makersEditBTN.Margin = new Padding(3, 2, 3, 2);
+            makersEditBTN.Location = new Point(237, 396);
             makersEditBTN.Name = "makersEditBTN";
-            makersEditBTN.Size = new Size(82, 29);
+            makersEditBTN.Size = new Size(94, 39);
             makersEditBTN.TabIndex = 3;
             makersEditBTN.Text = "ادیت";
             makersEditBTN.UseVisualStyleBackColor = true;
@@ -179,10 +171,9 @@
             // 
             // Makerdelbtn
             // 
-            Makerdelbtn.Location = new Point(307, 297);
-            Makerdelbtn.Margin = new Padding(3, 2, 3, 2);
+            Makerdelbtn.Location = new Point(351, 396);
             Makerdelbtn.Name = "Makerdelbtn";
-            Makerdelbtn.Size = new Size(82, 29);
+            Makerdelbtn.Size = new Size(94, 39);
             Makerdelbtn.TabIndex = 2;
             Makerdelbtn.Text = "حذف";
             Makerdelbtn.UseVisualStyleBackColor = true;
@@ -191,22 +182,21 @@
             // makersDGV
             // 
             makersDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            makersDGV.Location = new Point(0, 4);
-            makersDGV.Margin = new Padding(3, 2, 3, 2);
+            makersDGV.Location = new Point(0, 5);
             makersDGV.Name = "makersDGV";
             makersDGV.RowHeadersWidth = 51;
             makersDGV.RowTemplate.Height = 29;
-            makersDGV.Size = new Size(838, 274);
+            makersDGV.Size = new Size(958, 365);
             makersDGV.TabIndex = 0;
+            makersDGV.CellFormatting += dgv_CellFormatting;
             // 
             // ordersTabs
             // 
             ordersTabs.Controls.Add(tabControl1);
-            ordersTabs.Location = new Point(4, 24);
-            ordersTabs.Margin = new Padding(3, 2, 3, 2);
+            ordersTabs.Location = new Point(4, 29);
             ordersTabs.Name = "ordersTabs";
-            ordersTabs.Padding = new Padding(3, 2, 3, 2);
-            ordersTabs.Size = new Size(861, 404);
+            ordersTabs.Padding = new Padding(3);
+            ordersTabs.Size = new Size(985, 543);
             ordersTabs.TabIndex = 2;
             ordersTabs.Text = "سفارشات";
             ordersTabs.UseVisualStyleBackColor = true;
@@ -216,31 +206,28 @@
             tabControl1.Controls.Add(ordersTab);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Location = new Point(3, 0);
-            tabControl1.Margin = new Padding(3, 2, 3, 2);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(927, 432);
+            tabControl1.Size = new Size(1059, 576);
             tabControl1.TabIndex = 0;
             // 
             // ordersTab
             // 
             ordersTab.Controls.Add(Orderdelbtn);
             ordersTab.Controls.Add(ordersDGV);
-            ordersTab.Location = new Point(4, 24);
-            ordersTab.Margin = new Padding(3, 2, 3, 2);
+            ordersTab.Location = new Point(4, 29);
             ordersTab.Name = "ordersTab";
-            ordersTab.Padding = new Padding(3, 2, 3, 2);
-            ordersTab.Size = new Size(919, 404);
+            ordersTab.Padding = new Padding(3);
+            ordersTab.Size = new Size(1051, 543);
             ordersTab.TabIndex = 0;
             ordersTab.Text = "سفارشات";
             ordersTab.UseVisualStyleBackColor = true;
             // 
             // Orderdelbtn
             // 
-            Orderdelbtn.Location = new Point(348, 310);
-            Orderdelbtn.Margin = new Padding(3, 2, 3, 2);
+            Orderdelbtn.Location = new Point(398, 413);
             Orderdelbtn.Name = "Orderdelbtn";
-            Orderdelbtn.Size = new Size(82, 22);
+            Orderdelbtn.Size = new Size(94, 29);
             Orderdelbtn.TabIndex = 3;
             Orderdelbtn.Text = "حذف";
             Orderdelbtn.UseVisualStyleBackColor = true;
@@ -249,13 +236,13 @@
             // ordersDGV
             // 
             ordersDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ordersDGV.Location = new Point(5, 4);
-            ordersDGV.Margin = new Padding(3, 2, 3, 2);
+            ordersDGV.Location = new Point(6, 5);
             ordersDGV.Name = "ordersDGV";
             ordersDGV.RowHeadersWidth = 51;
             ordersDGV.RowTemplate.Height = 29;
-            ordersDGV.Size = new Size(834, 272);
+            ordersDGV.Size = new Size(953, 363);
             ordersDGV.TabIndex = 0;
+            ordersDGV.CellFormatting += dgv_CellFormatting;
             // 
             // tabPage3
             // 
@@ -270,20 +257,20 @@
             tabPage3.Controls.Add(label7);
             tabPage3.Controls.Add(label8);
             tabPage3.Controls.Add(button2);
-            tabPage3.Location = new Point(4, 24);
-            tabPage3.Margin = new Padding(3, 2, 3, 2);
+            tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3, 2, 3, 2);
-            tabPage3.Size = new Size(919, 404);
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(1051, 543);
             tabPage3.TabIndex = 1;
             tabPage3.Text = "افزودن سفارش";
             tabPage3.UseVisualStyleBackColor = true;
             // 
             // addProductsListButton
             // 
-            addProductsListButton.Location = new Point(280, 34);
+            addProductsListButton.Location = new Point(320, 45);
+            addProductsListButton.Margin = new Padding(3, 4, 3, 4);
             addProductsListButton.Name = "addProductsListButton";
-            addProductsListButton.Size = new Size(75, 45);
+            addProductsListButton.Size = new Size(86, 60);
             addProductsListButton.TabIndex = 12;
             addProductsListButton.Text = "اضافه کردن سفارش";
             addProductsListButton.UseVisualStyleBackColor = true;
@@ -291,44 +278,40 @@
             // 
             // AddBuyerAddressTextBox
             // 
-            AddBuyerAddressTextBox.Location = new Point(628, 249);
-            AddBuyerAddressTextBox.Margin = new Padding(3, 2, 3, 2);
+            AddBuyerAddressTextBox.Location = new Point(718, 332);
             AddBuyerAddressTextBox.Name = "AddBuyerAddressTextBox";
-            AddBuyerAddressTextBox.Size = new Size(176, 23);
+            AddBuyerAddressTextBox.Size = new Size(201, 27);
             AddBuyerAddressTextBox.TabIndex = 8;
             // 
             // AddBuyerNumTextBox
             // 
-            AddBuyerNumTextBox.Location = new Point(628, 207);
-            AddBuyerNumTextBox.Margin = new Padding(3, 2, 3, 2);
+            AddBuyerNumTextBox.Location = new Point(718, 276);
             AddBuyerNumTextBox.Name = "AddBuyerNumTextBox";
-            AddBuyerNumTextBox.Size = new Size(176, 23);
+            AddBuyerNumTextBox.Size = new Size(201, 27);
             AddBuyerNumTextBox.TabIndex = 8;
             AddBuyerNumTextBox.KeyPress += AddBuyerNumTextBox_KeyPress;
             // 
             // AddBuyerLastTextBox
             // 
-            AddBuyerLastTextBox.Location = new Point(223, 249);
-            AddBuyerLastTextBox.Margin = new Padding(3, 2, 3, 2);
+            AddBuyerLastTextBox.Location = new Point(255, 332);
             AddBuyerLastTextBox.Name = "AddBuyerLastTextBox";
-            AddBuyerLastTextBox.Size = new Size(176, 23);
+            AddBuyerLastTextBox.Size = new Size(201, 27);
             AddBuyerLastTextBox.TabIndex = 9;
             // 
             // AddbuyerFirsTextBox
             // 
-            AddbuyerFirsTextBox.Location = new Point(223, 203);
-            AddbuyerFirsTextBox.Margin = new Padding(3, 2, 3, 2);
+            AddbuyerFirsTextBox.Location = new Point(255, 271);
             AddbuyerFirsTextBox.Name = "AddbuyerFirsTextBox";
-            AddbuyerFirsTextBox.Size = new Size(176, 23);
+            AddbuyerFirsTextBox.Size = new Size(201, 27);
             AddbuyerFirsTextBox.TabIndex = 10;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(485, 247);
+            label10.Location = new Point(554, 329);
             label10.Name = "label10";
-            label10.Size = new Size(47, 21);
+            label10.Size = new Size(56, 28);
             label10.TabIndex = 4;
             label10.Text = "آدرس";
             // 
@@ -336,9 +319,9 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(459, 207);
+            label5.Location = new Point(525, 276);
             label5.Name = "label5";
-            label5.Size = new Size(80, 21);
+            label5.Size = new Size(101, 28);
             label5.TabIndex = 4;
             label5.Text = "تلفن تماس";
             // 
@@ -346,9 +329,9 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(43, 251);
+            label6.Location = new Point(49, 335);
             label6.Name = "label6";
-            label6.Size = new Size(91, 21);
+            label6.Size = new Size(117, 28);
             label6.TabIndex = 5;
             label6.Text = "نام خانوادگی";
             // 
@@ -356,9 +339,9 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(61, 205);
+            label7.Location = new Point(70, 273);
             label7.Name = "label7";
-            label7.Size = new Size(73, 21);
+            label7.Size = new Size(93, 28);
             label7.TabIndex = 6;
             label7.Text = "نام خریدار";
             // 
@@ -366,18 +349,17 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(61, 34);
+            label8.Location = new Point(70, 45);
             label8.Name = "label8";
-            label8.Size = new Size(80, 21);
+            label8.Size = new Size(99, 28);
             label8.TabIndex = 7;
             label8.Text = "سفارشات :";
             // 
             // button2
             // 
-            button2.Location = new Point(377, 309);
-            button2.Margin = new Padding(3, 2, 3, 2);
+            button2.Location = new Point(431, 412);
             button2.Name = "button2";
-            button2.Size = new Size(144, 34);
+            button2.Size = new Size(165, 45);
             button2.TabIndex = 3;
             button2.Text = "اضافه کردن";
             button2.UseVisualStyleBackColor = true;
@@ -385,11 +367,10 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(849, 421);
+            ClientSize = new Size(970, 561);
             Controls.Add(mainTabs);
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;

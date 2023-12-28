@@ -21,7 +21,6 @@ namespace shop
         private OleDbCommand myCommand1 = new OleDbCommand(), myCommand2 = new OleDbCommand(), myCommand3 = new OleDbCommand();
         private OleDbDataAdapter adapter1 = new OleDbDataAdapter(), adapter2 = new OleDbDataAdapter(), adapter3 = new OleDbDataAdapter();
         private DataSet dataSet1 = new DataSet(), dataSet2 = new DataSet(), dataSet3 = new DataSet();
-        DataGridView dgv = new DataGridView();
 
 
         private List<ComboBox> orderBoxes = new List<ComboBox>();
@@ -32,8 +31,12 @@ namespace shop
         private void Form1_Load(object sender, EventArgs e)
         {
             mainTabs.Size = this.Size;
-            show("Makers");
+            InitializeDataGridView(productsDGV);
+            InitializeDataGridView(makersDGV);
+            InitializeDataGridView(ordersDGV);
+
             show("Products");
+            show("Makers");
             show("Orders");
             createAddOrder();
         }
@@ -93,11 +96,11 @@ namespace shop
         internal void show(string TableName)
         {
             connection.Open();
-            query = $"select * from {TableName}";
 
             switch (TableName)
             {
                 case "Products":
+                    query = $"select Product_ID, ProductName, Maker_ID, Price, Stuck, ProductType from {TableName}";
                     dataSet2.Clear();
                     myCommand2.CommandText = query;
                     myCommand2.Connection = connection;
@@ -107,6 +110,7 @@ namespace shop
                     productsDGV.Refresh();
                     break;
                 case "Makers":
+                    query = $"select * from {TableName}";
                     dataSet1.Clear();
                     myCommand1.CommandText = query;
                     myCommand1.Connection = connection;
@@ -116,6 +120,7 @@ namespace shop
                     makersDGV.Refresh();
                     break;
                 case "Orders":
+                    query = $"select * from {TableName}";
                     dataSet3.Clear();
                     myCommand3.CommandText = query;
                     myCommand3.Connection = connection;
@@ -180,7 +185,51 @@ namespace shop
             addProductsListButton.Location = new Point(ProductOrdersListX + 5, ProductOrdersListY - 10);
 
         }
+        private void InitializeDataGridView(DataGridView dgv)
+        {
+            // Initialize basic DataGridView properties.
+            dgv.Dock = DockStyle.Fill;
+            dgv.BackgroundColor = Color.LightGray;
+            dgv.BorderStyle = BorderStyle.Fixed3D;
 
+            // Set property values appropriate for read-only display and 
+            // limited interactivity. 
+            dgv.AllowUserToAddRows = false;
+            dgv.AllowUserToDeleteRows = false;
+            dgv.AllowUserToOrderColumns = true;
+            dgv.ReadOnly = true;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.MultiSelect = false;
+            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            dgv.AllowUserToResizeColumns = false;
+            dgv.ColumnHeadersHeightSizeMode =
+                DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgv.AllowUserToResizeRows = false;
+            dgv.RowHeadersWidthSizeMode =
+                DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+
+            // Set the selection background color for all the cells.
+            dgv.DefaultCellStyle.SelectionBackColor = Color.White;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Set RowHeadersDefaultCellStyle.SelectionBackColor so that its default
+            // value won't override DataGridView.DefaultCellStyle.SelectionBackColor.
+            dgv.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Empty;
+
+            // Set the background color for all rows and for alternating rows. 
+            // The value for alternating rows overrides the value for all rows. 
+            dgv.RowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.DarkGray;
+
+            // Set the row and column header styles.
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
+            dgv.RowHeadersDefaultCellStyle.BackColor = Color.Black;
+
+            // Attach a handler to the CellFormatting event.
+            dgv.CellFormatting += new
+                DataGridViewCellFormattingEventHandler(dgv_CellFormatting);
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             show("Products");
@@ -280,16 +329,10 @@ namespace shop
             string[] outputs = [];
             void editExit(string[] edited)
             {
-
-
-
                 outputs = edited;
-
             }
 
             editForm productsEdit = new editForm(inputs, editExit, inputsText);
-
-
 
             productsEdit.Show();
 
@@ -317,7 +360,7 @@ namespace shop
 
         private void makersEditBTN_Click(object sender, EventArgs e)
         {
-            string[] inputs = ["نام", "نام خانوادگی", "کد ملی", "تلفن تماس" , "آدرس"];
+            string[] inputs = ["نام", "نام خانوادگی", "کد ملی", "تلفن تماس", "آدرس"];
 
             showForm(inputs, []);
         }
@@ -327,6 +370,11 @@ namespace shop
             string[] inputs = ["نام", "نام خانوادگی", "کد ملی", "تلفن تماس", "آدرس"];
 
             showForm(inputs, []);
+        }
+
+        private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
         }
     }
 }
