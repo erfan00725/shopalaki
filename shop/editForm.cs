@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using shop;
 
 namespace shop
 {
@@ -26,7 +27,7 @@ namespace shop
 
         private Action<string[]> exitAction;
 
-        public editForm(string[] inputs, Action<string[]> func, string[]? orginal)
+        public editForm(string[] inputs, Action<string[]> func, List<string> orginal)
         {
             InitializeComponent();
 
@@ -38,7 +39,7 @@ namespace shop
 
                 editTextBoxes.Add(new TextBox { Font = new Font("Segoe UI", 10), Size = new Size(176, 23), Location = new Point(textBoxesX, textBoxesY) });
 
-                if (!(orginal.Length < i + 1))
+                if (!(orginal.Count < i + 1))
                 {
                     editTextBoxes[i].Text = orginal[i];
                 }
@@ -69,7 +70,6 @@ namespace shop
 
         private void editSubmit_Click(object sender, EventArgs e)
         {
-
             bool arrayEmpty = false;
 
             foreach (var item in this.editTextBoxes)

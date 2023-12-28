@@ -74,7 +74,7 @@
             addProductsBTN.Name = "addProductsBTN";
             addProductsBTN.Size = new Size(97, 39);
             addProductsBTN.TabIndex = 2;
-            addProductsBTN.Text = "اصافه کردن";
+            addProductsBTN.Text = "اضافه کردن";
             addProductsBTN.UseVisualStyleBackColor = true;
             addProductsBTN.Click += addProductsBTN_Click;
             // 
@@ -155,7 +155,7 @@
             MakersAddBTN.Name = "MakersAddBTN";
             MakersAddBTN.Size = new Size(97, 39);
             MakersAddBTN.TabIndex = 4;
-            MakersAddBTN.Text = "اصافه کردن";
+            MakersAddBTN.Text = "اضافه کردن";
             MakersAddBTN.UseVisualStyleBackColor = true;
             MakersAddBTN.Click += MakersAddBTN_Click;
             // 
