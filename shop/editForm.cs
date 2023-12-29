@@ -19,11 +19,11 @@ namespace shop
 
         private string[] inputs;
 
-        private int textBoxesX = 454;
-        private int textBoxesY = 67;
+        private int textBoxesX = 350;
+        private int textBoxesY = 60;
 
-        private int labelsX = 278;
-        private int labeslY = 66;
+        private int labelsX = 200;
+        private int labeslY = 60;
 
         private Action<string[]> exitAction;
 

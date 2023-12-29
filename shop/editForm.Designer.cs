@@ -33,22 +33,27 @@
             // 
             // editSubmit
             // 
-            editSubmit.Location = new Point(373, 364);
+            editSubmit.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            editSubmit.Location = new Point(275, 363);
             editSubmit.Name = "editSubmit";
             editSubmit.Size = new Size(128, 40);
             editSubmit.TabIndex = 0;
             editSubmit.Text = "تایید";
             editSubmit.UseVisualStyleBackColor = true;
-            editSubmit.Click += this.editSubmit_Click;
+            editSubmit.Click += editSubmit_Click;
             // 
             // editForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(684, 450);
+            ControlBox = false;
             Controls.Add(editSubmit);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "editForm";
-            Text = "Form2";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "edit form";
             ResumeLayout(false);
         }
 
