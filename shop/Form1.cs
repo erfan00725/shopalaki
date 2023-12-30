@@ -24,8 +24,8 @@ namespace shop
         private DataSet dataSet1 = new DataSet(), dataSet2 = new DataSet(), dataSet3 = new DataSet();
         private List<ComboBox> orderBoxes = new List<ComboBox>();
         private string query = "", Orders = "";
-        private const int ProductOrdersListXCONST = 125;
-        private int ProductOrdersListNum = 0, ProductOrdersListX = ProductOrdersListXCONST, ProductOrdersListY = 34;
+        private const int ProductOrdersListXCONST = 150;
+        private int ProductOrdersListNum = 0, ProductOrdersListX = ProductOrdersListXCONST, ProductOrdersListY = 47;
 
         private void Form1_Load(object sender, EventArgs e)
         {
