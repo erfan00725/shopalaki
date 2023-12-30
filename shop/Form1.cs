@@ -256,6 +256,7 @@ namespace shop
             return Values;
         }
 
+        //int selectedrowindex = dgv.SelectedCells[0].RowIndex;DataGridViewRow selectedRow = dgv.Rows[selectedrowindex];
         private void button3_Click(object sender, EventArgs e)
         {
             show("Products");
