@@ -128,32 +128,32 @@ namespace shop
             switch (TableName)
             {
                 case "Products":
-                    query = $"select Product_ID, ProductName, Maker_ID, Price, Stuck, ProductType from {TableName}";
+                    query = $"select * from Products";
                     dataSet2.Clear();
                     myCommand2.CommandText = query;
                     myCommand2.Connection = connection;
                     adapter2.SelectCommand = myCommand2;
-                    adapter2.Fill(dataSet2, TableName);
+                    adapter2.Fill(dataSet2, "Products");
                     productsDGV.DataSource = dataSet2.Tables[0].DefaultView;
                     productsDGV.Refresh();
                     break;
                 case "Makers":
-                    query = $"select * from {TableName}";
+                    query = $"select * from Makers";
                     dataSet1.Clear();
                     myCommand1.CommandText = query;
                     myCommand1.Connection = connection;
                     adapter1.SelectCommand = myCommand1;
-                    adapter1.Fill(dataSet1, TableName);
+                    adapter1.Fill(dataSet1, "Makers");
                     makersDGV.DataSource = dataSet1.Tables[0].DefaultView;
                     makersDGV.Refresh();
                     break;
                 case "Orders":
-                    query = $"select * from {TableName}";
+                    query = $"select * from Orders";
                     dataSet3.Clear();
                     myCommand3.CommandText = query;
                     myCommand3.Connection = connection;
                     adapter3.SelectCommand = myCommand3;
-                    adapter3.Fill(dataSet3, TableName);
+                    adapter3.Fill(dataSet3, "Orders");
                     ordersDGV.DataSource = dataSet3.Tables[0].DefaultView;
                     ordersDGV.Refresh();
                     break;
@@ -338,6 +338,7 @@ namespace shop
         {
             createAddOrder();
         }
+        //delete("Products", int.Parse(getValueOfCurrectCell(productsDGV)[0])); show("Products");
 
         private void Productdelbtn_Click(object sender, EventArgs e)
         {
@@ -377,7 +378,16 @@ namespace shop
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
+        //string[] inputs = ["نام کالا", "آیدی سازنده", "قیمت کالا", "تعداد موجودی", "نوع محصول"];
+        //List<string> inputsTexts = getValueOfCurrectCell(productsDGV);
+        //void funk(string[] outputs)
+        //{
+        //    update("Products", inputsTexts[0], outputs);
+        //    show("Products");
+        //}
 
+        //showForm(inputs, inputsTexts.GetRange(1, 5), funk);
+        //}
         private void productsEditBTN_Click(object sender, EventArgs e)
         {
             string[] inputs = ["نام کالا", "آیدی سازنده", "قیمت کالا", "تعداد موجودی", "نوع محصول"];

@@ -42,6 +42,7 @@
             ordersTabs = new TabPage();
             tabControl1 = new TabControl();
             ordersTab = new TabPage();
+            TahvilIsOk = new Button();
             Orderdelbtn = new Button();
             ordersDGV = new DataGridView();
             tabPage3 = new TabPage();
@@ -56,7 +57,6 @@
             label7 = new Label();
             label8 = new Label();
             button2 = new Button();
-            TahvilIsOk = new Button();
             ((System.ComponentModel.ISupportInitialize)productsDGV).BeginInit();
             mainTabs.SuspendLayout();
             ProductsTab.SuspendLayout();
@@ -130,7 +130,7 @@
             ProductsTab.Controls.Add(productsDGV);
             ProductsTab.Location = new Point(4, 29);
             ProductsTab.Name = "ProductsTab";
-            ProductsTab.Padding = new Padding(3, 3, 3, 3);
+            ProductsTab.Padding = new Padding(3);
             ProductsTab.Size = new Size(968, 530);
             ProductsTab.TabIndex = 0;
             ProductsTab.Text = "محصولات";
@@ -144,7 +144,7 @@
             MakersTab.Controls.Add(makersDGV);
             MakersTab.Location = new Point(4, 29);
             MakersTab.Name = "MakersTab";
-            MakersTab.Padding = new Padding(3, 3, 3, 3);
+            MakersTab.Padding = new Padding(3);
             MakersTab.Size = new Size(968, 530);
             MakersTab.TabIndex = 1;
             MakersTab.Text = "سازندگان";
@@ -196,7 +196,7 @@
             ordersTabs.Controls.Add(tabControl1);
             ordersTabs.Location = new Point(4, 29);
             ordersTabs.Name = "ordersTabs";
-            ordersTabs.Padding = new Padding(3, 3, 3, 3);
+            ordersTabs.Padding = new Padding(3);
             ordersTabs.Size = new Size(968, 530);
             ordersTabs.TabIndex = 2;
             ordersTabs.Text = "سفارشات";
@@ -219,11 +219,21 @@
             ordersTab.Controls.Add(ordersDGV);
             ordersTab.Location = new Point(4, 29);
             ordersTab.Name = "ordersTab";
-            ordersTab.Padding = new Padding(3, 3, 3, 3);
+            ordersTab.Padding = new Padding(3);
             ordersTab.Size = new Size(1051, 543);
             ordersTab.TabIndex = 0;
             ordersTab.Text = "سفارشات";
             ordersTab.UseVisualStyleBackColor = true;
+            // 
+            // TahvilIsOk
+            // 
+            TahvilIsOk.Location = new Point(473, 403);
+            TahvilIsOk.Name = "TahvilIsOk";
+            TahvilIsOk.Size = new Size(114, 43);
+            TahvilIsOk.TabIndex = 4;
+            TahvilIsOk.Text = "تایید تحویل";
+            TahvilIsOk.UseVisualStyleBackColor = true;
+            TahvilIsOk.Click += TahvilIsOk_Click;
             // 
             // Orderdelbtn
             // 
@@ -261,7 +271,7 @@
             tabPage3.Controls.Add(button2);
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3, 3, 3, 3);
+            tabPage3.Padding = new Padding(3);
             tabPage3.Size = new Size(1051, 543);
             tabPage3.TabIndex = 1;
             tabPage3.Text = "افزودن سفارش";
@@ -367,16 +377,6 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // TahvilIsOk
-            // 
-            TahvilIsOk.Location = new Point(473, 403);
-            TahvilIsOk.Name = "TahvilIsOk";
-            TahvilIsOk.Size = new Size(114, 43);
-            TahvilIsOk.TabIndex = 4;
-            TahvilIsOk.Text = "تایید تحویل";
-            TahvilIsOk.UseVisualStyleBackColor = true;
-            TahvilIsOk.Click += TahvilIsOk_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -388,7 +388,7 @@
             MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "shop";
+            Text = "مدیریت فروشگاه";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)productsDGV).EndInit();
             mainTabs.ResumeLayout(false);

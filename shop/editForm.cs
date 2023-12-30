@@ -35,7 +35,7 @@ namespace shop
 
             for (int i = 0; i < inputs.Count(); i++)
             {
-                editLabels.Add(new Label { Text = inputs[i], Location = new Point(labelsX, labeslY), Font = new Font("Segoe UI", 12) });
+                editLabels.Add(new Label { Text = inputs[i], Location = new Point(labelsX, labeslY), Font = new Font("Segoe UI", 12), Size = new Size(120, 50) });
 
                 editTextBoxes.Add(new TextBox { Font = new Font("Segoe UI", 10), Size = new Size(176, 23), Location = new Point(textBoxesX, textBoxesY) });
 
@@ -85,6 +85,11 @@ namespace shop
 
                 this.Close();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
