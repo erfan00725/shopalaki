@@ -242,12 +242,8 @@ namespace shop
 
         private void InitializeDataGridView(DataGridView dgv)
         {
-            // Initialize basic DataGridView properties.
             dgv.BackgroundColor = Color.LightGray;
             dgv.BorderStyle = BorderStyle.Fixed3D;
-
-            // Set property values appropriate for read-only display and 
-            // limited interactivity. 
             dgv.AllowUserToAddRows = false;
             dgv.AllowUserToDeleteRows = false;
             dgv.AllowUserToOrderColumns = true;
@@ -256,33 +252,18 @@ namespace shop
             dgv.MultiSelect = false;
             dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             dgv.AllowUserToResizeColumns = false;
-            dgv.ColumnHeadersHeightSizeMode =
-                DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgv.AllowUserToResizeRows = false;
-            dgv.RowHeadersWidthSizeMode =
-                DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-
-            // Set the selection background color for all the cells.
+            dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgv.DefaultCellStyle.SelectionBackColor = Color.White;
             dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
-
-            // Set RowHeadersDefaultCellStyle.SelectionBackColor so that its default
-            // value won't override DataGridView.DefaultCellStyle.SelectionBackColor.
             dgv.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Empty;
-
-            // Set the background color for all rows and for alternating rows. 
-            // The value for alternating rows overrides the value for all rows. 
-            dgv.RowsDefaultCellStyle.BackColor = Color.LightGray;
             dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.DarkGray;
-
-            // Set the row and column header styles.
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
             dgv.RowHeadersDefaultCellStyle.BackColor = Color.Black;
-
-            // Attach a handler to the CellFormatting event.
             dgv.CellFormatting += new
-                DataGridViewCellFormattingEventHandler(dgv_CellFormatting);
+            DataGridViewCellFormattingEventHandler(dgv_CellFormatting);
         }
 
         private List<string> getValueOfCurrectCell(DataGridView dgv)
