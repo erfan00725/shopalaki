@@ -182,7 +182,7 @@ namespace shop
             {
                 try
                 {
-                    cbdata.Add(dataSet2.Tables[0].Rows[i][1].ToString());
+                    cbdata.Add(dataSet2.Tables[0].Rows[i][2].ToString());
 
                 }
                 catch
