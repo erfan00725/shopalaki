@@ -164,34 +164,6 @@ namespace shop
             connection.Close();
         }
 
-        private List<string> makernames()
-        {
-            connection.Open();
-
-            string query = $"select * from Products;";
-            dataSet2.Clear();
-            myCommand2.CommandText = query;
-            myCommand2.Connection = connection;
-            adapter2.SelectCommand = myCommand2;
-            adapter2.Fill(dataSet2, "Products");
-            connection.Close();
-
-            List<string> cbdata = new List<string>();
-
-            for (int i = 0; i < 100; i++)
-            {
-                try
-                {
-                    cbdata.Add(dataSet2.Tables[0].Rows[i][2].ToString());
-
-                }
-                catch
-                {
-                    break;
-                }
-            }
-            return cbdata;
-        }
         private void createAddOrder()
         {
             if (ProductOrdersListNum == 12)

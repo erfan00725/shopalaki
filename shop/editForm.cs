@@ -53,7 +53,6 @@ namespace shop
             }
 
             exitAction = func;
-            orginal = orginal;
         }
 
         public string[] getEdits()
