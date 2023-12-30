@@ -46,15 +46,15 @@ namespace shop
             {
                 case "Products":
                     query = $"insert into Products (ProductName ,Maker_ID, Price, Stuck, ProductType) " +
-                        $"values('{Values[0]}','{Values[1]}','{Values[2]}','{Values[3]}','{Values[4]}');";
+                        $"values(\'{Values[0]}\',\'{Values[1]}\',\'{Values[2]}\',\'{Values[3]}\',\'{Values[4]}\');";
                     break;
                 case "Makers":
                     query = $"insert into Makers (FirstName, LastName, PhoneNumber, MakerAddress, NationalCode) " +
-                        $"values(\'{Values[0]}','{Values[1]}','{Values[2]}','{Values[3]}','{Values[4]}');";
+                        $"values(\'{Values[0]}\',\'{Values[1]}\',\'{Values[2]}\',\'{Values[3]}\',\'{Values[4]}\');";
                     break;
                 case "Orders":
-                    query = $"insert into Orders (Product_IDs, CustomerFirstName, CustomerLastName, CustomerAddress, CustomerPhone) " +
-                        $"values(\'{Values[0]} \',\' {Values[1]} \',\' {Values[2]} \',\' {Values[3]} \',\' {Values[4]}');";
+                    query = $"insert into Orders (Product_IDs, CustomerFirstName, CustomerLastName, CustomerAddress, CustomerPhone, Status) " +
+                        $"values(\'{Values[0]} \',\' {Values[1]} \',\' {Values[2]} \',\' {Values[3]} \',\' {Values[4]}\',\'در انتظار تحویل\');";
                     break;
                 default:
                     break;
@@ -106,7 +106,7 @@ namespace shop
                     query = $"UPDATE Makers SET FirstName = \'{Values[0]}\', LastName = \'{Values[1]}\', PhoneNumber = \'{Values[2]}\', MakerAddress = \'{Values[3]}\', NationalCode = \'{Values[4]}\' WHERE Maker_ID = {ID};";
                     break;
                 case "Orders":
-                    query = $"DELETE FROM Orders WHERE Order_ID = ;";
+                    query = $"UPDATE Orders SET Status = \'{Values[0]}\' WHERE Order_ID = {ID};";
                     break;
                 default:
                     break;
@@ -164,6 +164,34 @@ namespace shop
             connection.Close();
         }
 
+        private List<string> makernames()
+        {
+            connection.Open();
+
+            string query = $"select * from Products;";
+            dataSet2.Clear();
+            myCommand2.CommandText = query;
+            myCommand2.Connection = connection;
+            adapter2.SelectCommand = myCommand2;
+            adapter2.Fill(dataSet2, "Products");
+            connection.Close();
+
+            List<string> cbdata = new List<string>();
+
+            for (int i = 0; i < 100; i++)
+            {
+                try
+                {
+                    cbdata.Add(dataSet2.Tables[0].Rows[i][1].ToString());
+
+                }
+                catch
+                {
+                    break;
+                }
+            }
+            return cbdata;
+        }
         private void createAddOrder()
         {
             if (ProductOrdersListNum == 12)
@@ -200,7 +228,6 @@ namespace shop
                     break;
                 }
             }
-
 
             ComboBox cb = new ComboBox();
             cb.Location = new Point(ProductOrdersListX, ProductOrdersListY);
@@ -405,6 +432,12 @@ namespace shop
         private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
 
+        }
+
+        private void TahvilIsOk_Click(object sender, EventArgs e)
+        {
+            update("Orders", getValueOfCurrectCell(ordersDGV)[0], ["تحویل داده شد"]);
+            show("Orders");
         }
     }
 }
